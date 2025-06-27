@@ -1,7 +1,8 @@
 import { NextRequest } from 'next/server';
-import { PropertyService } from '@/services/property';
+import { getPropertyService } from '@/services/property/singleton';
 import { findSimilarProperties } from '@/utils/similarity';
 import { successResponse, ApiErrors } from '@/utils/api';
+import { validatePropertyId, validateAndGetProperty, validateLimit } from '@/utils/validation';
 
 /**
  * GET /api/recommendations/[id]
@@ -12,44 +13,37 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    const propertyService = new PropertyService();
-    const propertyId = parseInt(params.id);
+    const propertyService = getPropertyService();
     const { searchParams } = new URL(request.url);
-    const limit = parseInt(searchParams.get('limit') || '3');
 
-    // Validate ID is a number
-    if (isNaN(propertyId)) {
-      return ApiErrors.invalidId('property ID');
-    }
+    // Validate property ID
+    const idValidation = validatePropertyId(params.id);
+    if ('error' in idValidation) return idValidation.error;
 
     // Validate limit parameter
-    if (isNaN(limit) || limit < 1 || limit > 10) {
-      return ApiErrors.badRequest('Invalid limit. Must be between 1 and 10.');
-    }
+    const limitValidation = validateLimit(searchParams.get('limit'));
+    if ('error' in limitValidation) return limitValidation.error;
 
-    // Get target property
-    const targetProperty = propertyService.getPropertyById(propertyId);
-    
-    if (!targetProperty) {
-      return ApiErrors.notFoundById('Property', propertyId);
-    }
+    // Validate and get target property
+    const propertyValidation = validateAndGetProperty(idValidation.propertyId, propertyService);
+    if ('error' in propertyValidation) return propertyValidation.error;
 
     // Get all properties for similarity comparison
     const allProperties = propertyService.getAllProperties();
     
     // Find similar properties using our algorithm
     const similarProperties = findSimilarProperties(
-      targetProperty,
+      propertyValidation.property,
       allProperties,
-      limit
+      limitValidation.limit
     );
 
     return successResponse(
       {
-        property: targetProperty,
+        property: propertyValidation.property,
         recommendations: similarProperties
       },
-      `Found ${similarProperties.length} similar properties for "${targetProperty.titulo}"`,
+      `Found ${similarProperties.length} similar properties for "${propertyValidation.property.titulo}"`,
       { total: similarProperties.length }
     );
 

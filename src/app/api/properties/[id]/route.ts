@@ -1,6 +1,7 @@
 import { NextRequest } from 'next/server';
-import { PropertyService } from '@/services/property';
+import { getPropertyService } from '@/services/property/singleton';
 import { successResponse, ApiErrors } from '@/utils/api';
+import { validatePropertyId, validateAndGetProperty } from '@/utils/validation';
 
 /**
  * GET /api/properties/[id]
@@ -11,25 +12,19 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    const propertyService = new PropertyService();
-    const propertyId = parseInt(params.id);
+    const propertyService = getPropertyService();
+    
+    // Validate property ID
+    const idValidation = validatePropertyId(params.id);
+    if ('error' in idValidation) return idValidation.error;
 
-    // Validate ID is a number
-    if (isNaN(propertyId)) {
-      return ApiErrors.invalidId('property ID');
-    }
-
-    // Get property by ID
-    const property = propertyService.getPropertyById(propertyId);
-
-    // Check if property exists
-    if (!property) {
-      return ApiErrors.notFoundById('Property', propertyId);
-    }
+    // Validate and get property
+    const propertyValidation = validateAndGetProperty(idValidation.propertyId, propertyService);
+    if ('error' in propertyValidation) return propertyValidation.error;
 
     return successResponse(
-      property,
-      `Property ${propertyId} retrieved successfully`
+      propertyValidation.property,
+      `Property ${idValidation.propertyId} retrieved successfully`
     );
 
   } catch (error) {

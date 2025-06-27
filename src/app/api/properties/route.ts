@@ -1,6 +1,7 @@
 import { NextRequest } from 'next/server';
-import { PropertyService } from '@/services/property';
+import { getPropertyService } from '@/services/property/singleton';
 import { successResponse, ApiErrors } from '@/utils/api';
+import { validatePriceRange, validatePropertyType } from '@/utils/validation';
 
 /**
  * GET /api/properties
@@ -9,13 +10,20 @@ import { successResponse, ApiErrors } from '@/utils/api';
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
-    const propertyService = new PropertyService();
+    const propertyService = getPropertyService();
 
     // Get filter parameters from query string
     const ciudad = searchParams.get('ciudad');
-    const tipo = searchParams.get('tipo') as 'Casa' | 'Departamento' | null;
-    const minPrice = searchParams.get('minPrice');
-    const maxPrice = searchParams.get('maxPrice');
+    const tipoParam = searchParams.get('tipo');
+    const minPriceParam = searchParams.get('minPrice');
+    const maxPriceParam = searchParams.get('maxPrice');
+
+    // Validate parameters
+    const tipoValidation = validatePropertyType(tipoParam);
+    if ('error' in tipoValidation) return tipoValidation.error;
+
+    const priceValidation = validatePriceRange(minPriceParam, maxPriceParam);
+    if ('error' in priceValidation) return priceValidation.error;
 
     let properties = propertyService.getAllProperties();
 
@@ -24,15 +32,13 @@ export async function GET(request: NextRequest) {
       properties = propertyService.getPropertiesByCity(ciudad);
     }
 
-    if (tipo) {
-      properties = properties.filter(prop => prop.tipo === tipo);
+    if (tipoValidation.tipo) {
+      properties = properties.filter(prop => prop.tipo === tipoValidation.tipo);
     }
 
-    if (minPrice && maxPrice) {
-      const min = parseInt(minPrice);
-      const max = parseInt(maxPrice);
+    if (priceValidation.minPrice !== null && priceValidation.maxPrice !== null) {
       properties = properties.filter(prop => 
-        prop.precio >= min && prop.precio <= max
+        prop.precio >= priceValidation.minPrice! && prop.precio <= priceValidation.maxPrice!
       );
     }
 
