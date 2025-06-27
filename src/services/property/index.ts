@@ -57,4 +57,53 @@ export class PropertyService {
   getPropertyCount(): number {
     return this.properties.length;
   }
+
+  /**
+   * Get paginated properties with filtering
+   */
+  getPaginatedProperties(
+    page: number, 
+    limit: number, 
+    filters?: {
+      ciudad?: string;
+      tipo?: 'Casa' | 'Departamento';
+      minPrice?: number;
+      maxPrice?: number;
+    }
+  ) {
+    let filteredProperties = this.properties;
+
+    // Apply filters if provided
+    if (filters?.ciudad) {
+      filteredProperties = this.getPropertiesByCity(filters.ciudad);
+    }
+
+    if (filters?.tipo) {
+      filteredProperties = filteredProperties.filter(prop => prop.tipo === filters.tipo);
+    }
+
+    if (filters?.minPrice !== undefined && filters?.maxPrice !== undefined) {
+      filteredProperties = filteredProperties.filter(prop => 
+        prop.precio >= filters.minPrice! && prop.precio <= filters.maxPrice!
+      );
+    }
+
+    const total = filteredProperties.length;
+    const totalPages = Math.ceil(total / limit);
+    const startIndex = (page - 1) * limit;
+    const endIndex = startIndex + limit;
+    const data = filteredProperties.slice(startIndex, endIndex);
+
+    return {
+      data,
+      pagination: {
+        page,
+        limit,
+        total,
+        totalPages,
+        hasNext: page < totalPages,
+        hasPrevious: page > 1
+      }
+    };
+  }
 } 

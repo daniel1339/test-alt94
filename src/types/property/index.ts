@@ -35,4 +35,26 @@ export interface RecommendationResponse {
   recommendations: PropertyWithScore[];
   success: boolean;
   message?: string;
+}
+
+/**
+ * Pagination metadata
+ */
+export interface PaginationMeta {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+  hasNext: boolean;
+  hasPrevious: boolean;
+}
+
+/**
+ * Paginated response structure
+ */
+export interface PaginatedResponse<T> {
+  success: boolean;
+  data: T[];
+  pagination: PaginationMeta;
+  message?: string;
 } 

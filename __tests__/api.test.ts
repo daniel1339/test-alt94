@@ -23,6 +23,38 @@ describe('Environment and Configuration', () => {
 });
 
 /**
+ * Pagination API Tests
+ */
+describe('Pagination API Tests', () => {
+  
+  test('Properties API should support pagination', async () => {
+    const { GET } = await import('@/app/api/properties/route');
+    const request = new Request('http://localhost:3000/api/properties?page=1&limit=5');
+    const response = await GET(request as any);
+    const data = await response.json();
+
+    expect(response.status).toBe(200);
+    expect(data.success).toBe(true);
+    expect(Array.isArray(data.data)).toBe(true);
+    expect(data.data.length).toBeLessThanOrEqual(5);
+    expect(data.pagination).toBeDefined();
+    expect(data.pagination.page).toBe(1);
+    expect(data.pagination.limit).toBe(5);
+    expect(data.pagination.total).toBeGreaterThan(0);
+  });
+
+  test('Properties API should handle invalid pagination parameters', async () => {
+    const { GET } = await import('@/app/api/properties/route');
+    const request = new Request('http://localhost:3000/api/properties?page=0&limit=100');
+    const response = await GET(request as any);
+    const data = await response.json();
+
+    expect(response.status).toBe(400);
+    expect(data.success).toBe(false);
+  });
+});
+
+/**
  * Service and Utility Tests
  */
 describe('Application Services', () => {

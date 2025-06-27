@@ -78,4 +78,22 @@ export function validatePropertyType(tipo: string | null): { tipo: 'Casa' | 'Dep
   }
   
   return { tipo: tipo as 'Casa' | 'Departamento' };
+}
+
+/**
+ * Validates pagination parameters
+ */
+export function validatePagination(pageParam: string | null, limitParam: string | null) {
+  const page = parseInt(pageParam || '1');
+  const limit = parseInt(limitParam || '10');
+  
+  if (isNaN(page) || page < 1) {
+    return { error: ApiErrors.badRequest('Invalid page number. Must be a positive integer.') };
+  }
+  
+  if (isNaN(limit) || limit < 1 || limit > 50) {
+    return { error: ApiErrors.badRequest('Invalid limit. Must be between 1 and 50.') };
+  }
+  
+  return { page, limit };
 } 
