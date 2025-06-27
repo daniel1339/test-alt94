@@ -1,5 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import { PropertyService } from '@/services/property';
+import { successResponse, ApiErrors } from '@/utils/api';
 
 /**
  * GET /api/properties/[id]
@@ -15,14 +16,7 @@ export async function GET(
 
     // Validate ID is a number
     if (isNaN(propertyId)) {
-      return NextResponse.json(
-        {
-          success: false,
-          data: null,
-          message: 'Invalid property ID. Must be a number.'
-        },
-        { status: 400 }
-      );
+      return ApiErrors.invalidId('property ID');
     }
 
     // Get property by ID
@@ -30,30 +24,15 @@ export async function GET(
 
     // Check if property exists
     if (!property) {
-      return NextResponse.json(
-        {
-          success: false,
-          data: null,
-          message: `Property with ID ${propertyId} not found`
-        },
-        { status: 404 }
-      );
+      return ApiErrors.notFoundById('Property', propertyId);
     }
 
-    return NextResponse.json({
-      success: true,
-      data: property,
-      message: `Property ${propertyId} retrieved successfully`
-    });
+    return successResponse(
+      property,
+      `Property ${propertyId} retrieved successfully`
+    );
 
   } catch (error) {
-    return NextResponse.json(
-      {
-        success: false,
-        data: null,
-        message: 'Error fetching property details'
-      },
-      { status: 500 }
-    );
+    return ApiErrors.internalError('Error fetching property details');
   }
 } 

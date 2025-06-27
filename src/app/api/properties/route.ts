@@ -1,5 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import { PropertyService } from '@/services/property';
+import { successResponse, ApiErrors } from '@/utils/api';
 
 /**
  * GET /api/properties
@@ -35,22 +36,13 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    return NextResponse.json({
-      success: true,
-      data: properties,
-      total: properties.length,
-      message: `Found ${properties.length} properties`
-    });
+    return successResponse(
+      properties,
+      `Found ${properties.length} properties`,
+      { total: properties.length }
+    );
 
   } catch (error) {
-    return NextResponse.json(
-      {
-        success: false,
-        data: [],
-        total: 0,
-        message: 'Error fetching properties'
-      },
-      { status: 500 }
-    );
+    return ApiErrors.internalError('Error fetching properties');
   }
 } 
