@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sistema de Recomendación de Propiedades
 
-## Getting Started
+Backend API desarrollado con Next.js 15 para gestionar propiedades inmobiliarias y generar recomendaciones basadas en similitud.
 
-First, run the development server:
+## APIs Disponibles
+
+**GET /api/properties**
+- Lista propiedades con filtros opcionales (ciudad, tipo, precio)
+- Soporte de paginación (page, limit)
+- Ejemplo: `/api/properties?ciudad=Córdoba&page=1&limit=10`
+
+**GET /api/properties/[id]**
+- Obtiene una propiedad específica por ID
+- Ejemplo: `/api/properties/5`
+
+**GET /api/recommendations/[id]**
+- Genera recomendaciones similares a una propiedad
+- Algoritmo de similitud por ciudad, tipo, precio y ambientes
+- Ejemplo: `/api/recommendations/5?limit=5`
+
+## Instalación
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Testing
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm test
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Datos
 
-## Learn More
+100 propiedades de muestra en `src/data/properties.json` con ciudades argentinas (Buenos Aires, Córdoba, Rosario, La Plata, etc).
 
-To learn more about Next.js, take a look at the following resources:
+## Estructura
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `/src/services` - Lógica de negocio
+- `/src/utils` - Validaciones y algoritmos
+- `/src/types` - Definiciones TypeScript
+- `/src/app/api` - Endpoints REST
