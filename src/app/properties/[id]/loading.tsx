@@ -1,12 +1,9 @@
 import { MainLayout } from '@/components/layout';
 import { Card, Breadcrumb, LoadingSpinner, TextSkeleton } from '@/components/ui';
+import { createLoadingBreadcrumb } from '@/utils/breadcrumb';
 
 export default function PropertyDetailLoading() {
-  const breadcrumbItems = [
-    { label: 'Inicio', href: '/' },
-    { label: 'Propiedades', href: '/properties' },
-    { label: 'Cargando...', isActive: true }
-  ];
+  const breadcrumbItems = createLoadingBreadcrumb('Propiedades');
 
   return (
     <MainLayout>
@@ -21,49 +18,28 @@ export default function PropertyDetailLoading() {
           <div className="space-y-4">
             <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
               <div className="space-y-3 flex-1">
-                <div 
-                  className="h-8 bg-gray-200 rounded w-2/3"
-                  style={{ backgroundColor: 'var(--color-gray-200)' }}
-                ></div>
+                <div className="skeleton skeleton-title w-2/3"></div>
                 <div className="flex items-center space-x-4">
-                  <div 
-                    className="h-5 bg-gray-200 rounded w-32"
-                    style={{ backgroundColor: 'var(--color-gray-200)' }}
-                  ></div>
-                  <div 
-                    className="h-8 bg-gray-200 rounded-full w-20"
-                    style={{ backgroundColor: 'var(--color-gray-200)' }}
-                  ></div>
+                  <div className="skeleton skeleton-text w-32"></div>
+                  <div className="skeleton skeleton-text w-20 rounded-full"></div>
                 </div>
               </div>
               
               {/* Action buttons skeleton */}
               <div className="flex space-x-3">
-                <div 
-                  className="h-10 bg-gray-200 rounded w-24"
-                  style={{ backgroundColor: 'var(--color-gray-200)' }}
-                ></div>
-                <div 
-                  className="h-10 bg-gray-200 rounded w-24"
-                  style={{ backgroundColor: 'var(--color-gray-200)' }}
-                ></div>
-                <div 
-                  className="h-10 bg-gray-200 rounded w-32"
-                  style={{ backgroundColor: 'var(--color-gray-200)' }}
-                ></div>
+                <div className="skeleton skeleton-button w-24"></div>
+                <div className="skeleton skeleton-button w-24"></div>
+                <div className="skeleton skeleton-button w-32"></div>
               </div>
             </div>
           </div>
 
           {/* Main grid skeleton */}
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid-detail">
             
             {/* Gallery skeleton - 2 columns */}
             <div className="lg:col-span-2">
-              <div 
-                className="aspect-video bg-gray-200 rounded-xl flex items-center justify-center"
-                style={{ backgroundColor: 'var(--color-gray-200)' }}
-              >
+              <div className="skeleton skeleton-image aspect-video rounded-xl flex items-center justify-center">
                 <LoadingSpinner size="lg" color="secondary" />
               </div>
             </div>
@@ -73,38 +49,20 @@ export default function PropertyDetailLoading() {
               {/* Price card skeleton */}
               <Card padding="lg" shadow="md">
                 <div className="text-center space-y-3">
-                  <div 
-                    className="h-10 bg-gray-200 rounded mx-auto w-48"
-                    style={{ backgroundColor: 'var(--color-gray-200)' }}
-                  ></div>
-                  <div 
-                    className="h-4 bg-gray-200 rounded mx-auto w-32"
-                    style={{ backgroundColor: 'var(--color-gray-200)' }}
-                  ></div>
-                  <div 
-                    className="h-12 bg-gray-200 rounded w-full"
-                    style={{ backgroundColor: 'var(--color-gray-200)' }}
-                  ></div>
+                  <div className="skeleton skeleton-title w-48 mx-auto"></div>
+                  <div className="skeleton skeleton-text w-32 mx-auto"></div>
+                  <div className="skeleton skeleton-button w-full"></div>
                 </div>
               </Card>
 
               {/* Features card skeleton */}
               <Card padding="lg" shadow="md">
-                <div 
-                  className="h-6 bg-gray-200 rounded w-32 mb-4"
-                  style={{ backgroundColor: 'var(--color-gray-200)' }}
-                ></div>
+                <div className="skeleton skeleton-text w-32 mb-4"></div>
                 <div className="space-y-4">
                   {Array.from({ length: 3 }).map((_, index) => (
-                    <div key={index} className="flex items-center justify-between">
-                      <div 
-                        className="h-5 bg-gray-200 rounded w-24"
-                        style={{ backgroundColor: 'var(--color-gray-200)' }}
-                      ></div>
-                      <div 
-                        className="h-5 bg-gray-200 rounded w-16"
-                        style={{ backgroundColor: 'var(--color-gray-200)' }}
-                      ></div>
+                    <div key={index} className="feature-row">
+                      <div className="skeleton skeleton-text w-24"></div>
+                      <div className="skeleton skeleton-text w-16"></div>
                     </div>
                   ))}
                 </div>
@@ -112,10 +70,7 @@ export default function PropertyDetailLoading() {
 
               {/* Additional info card skeleton */}
               <Card padding="lg" shadow="md">
-                <div 
-                  className="h-6 bg-gray-200 rounded w-40 mb-4"
-                  style={{ backgroundColor: 'var(--color-gray-200)' }}
-                ></div>
+                <div className="skeleton skeleton-text w-40 mb-4"></div>
                 <TextSkeleton lines={3} />
               </Card>
             </div>
@@ -123,10 +78,7 @@ export default function PropertyDetailLoading() {
 
           {/* Description card skeleton */}
           <Card padding="lg" shadow="md">
-            <div 
-              className="h-6 bg-gray-200 rounded w-32 mb-4"
-              style={{ backgroundColor: 'var(--color-gray-200)' }}
-            ></div>
+            <div className="skeleton skeleton-text w-32 mb-4"></div>
             <TextSkeleton lines={5} />
           </Card>
         </div>

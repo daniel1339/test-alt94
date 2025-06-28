@@ -1,265 +1,203 @@
 import Link from 'next/link';
+import { Button } from '@/components/ui';
 import { MainLayout } from '@/components/layout';
-import { Card, Button } from '@/components/ui';
 import { 
-  HiHome, 
-  HiStar, 
-  HiHeart, 
-  HiSearchCircle, 
-  HiChartBar, 
-  HiShieldCheck, 
-  HiDeviceMobile 
+  HiHome,
+  HiStar,
+  HiHeart,
+  HiSearch,
+  HiChartBar,
+  HiShieldCheck,
+  HiDeviceMobile,
+  HiArrowRight
 } from 'react-icons/hi';
 
-export default function Home() {
+export default function HomePage() {
   return (
     <MainLayout>
-      <div className="space-y-8">
+      <div className="space-y-16">
         
         {/* Hero Section */}
-        <div className="text-center space-y-6">
+        <section className="text-center space-y-8 py-12">
           <div className="space-y-4">
-            <h1 
-              className="text-4xl font-bold"
-              style={{ 
-                color: 'var(--color-text-primary)',
-                fontSize: 'var(--font-size-4xl)',
-                fontWeight: 'var(--font-weight-bold)'
-              }}
-            >
-              Sistema de Recomendación de Propiedades
+            <h1 className="text-4xl md:text-5xl font-bold text-primary">
+              Encuentra tu Propiedad
+              <br />
+              <span className="text-primary-600">Perfecta</span>
             </h1>
-            <p 
-              className="text-xl max-w-3xl mx-auto leading-relaxed"
-              style={{ 
-                color: 'var(--color-text-secondary)',
-                fontSize: 'var(--font-size-xl)'
-              }}
-            >
-              Descubre propiedades similares basadas en ubicación, tipo, precio y características.
-              Explora nuestro catálogo de <span className="font-semibold text-primary-600">100 propiedades</span> en Argentina.
+            <p className="text-xl max-w-3xl mx-auto text-secondary">
+              Sistema inteligente de recomendación que encuentra propiedades similares 
+              basándose en ubicación, tipo, precio y características específicas.
             </p>
           </div>
-
-          {/* CTA Principal */}
+          
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/properties">
               <Button variant="primary" size="lg">
+                <HiSearch className="w-5 h-5 mr-2" />
                 Explorar Propiedades
               </Button>
             </Link>
-            <Link href="/properties">
+            <Link href="/favorites">
               <Button variant="outline" size="lg">
-                Ver Recomendaciones
+                <HiHeart className="w-5 h-5 mr-2" />
+                Mis Favoritos
               </Button>
             </Link>
           </div>
-        </div>
+        </section>
 
-        {/* Cards de Funcionalidades */}
-        <div className="grid md:grid-cols-3 gap-6">
-          <Card hover padding="lg" shadow="md">
-            <div className="text-center space-y-4">
-              <div 
-                className="w-12 h-12 mx-auto rounded-lg flex items-center justify-center"
-                style={{ backgroundColor: 'var(--color-primary-100)', color: 'var(--color-primary-600)' }}
-              >
-                <HiHome className="w-6 h-6" />
-              </div>
-              <h3 
-                className="text-lg font-semibold"
-                style={{ color: 'var(--color-text-primary)' }}
-              >
-                Listado de Propiedades
-              </h3>
-              <p 
-                className="text-sm leading-relaxed"
-                style={{ color: 'var(--color-text-secondary)' }}
-              >
-                Explora todas las propiedades disponibles con filtros avanzados por ciudad, tipo y rango de precio.
-              </p>
-              <Link href="/properties">
-                <Button variant="primary" size="sm" className="w-full">
-                  Ver Propiedades
-                </Button>
-              </Link>
+        {/* Características principales */}
+        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="text-center space-y-4">
+            <div className="w-16 h-16 rounded-xl mx-auto flex items-center justify-center bg-primary-100">
+              <HiHome className="w-8 h-8 text-primary-600" />
             </div>
-          </Card>
+            <h3 className="text-xl font-semibold text-primary">
+              100+ Propiedades
+            </h3>
+            <p className="text-secondary">
+              Amplio catálogo de casas y departamentos en múltiples ciudades argentinas.
+            </p>
+          </div>
 
-          <Card hover padding="lg" shadow="md">
-            <div className="text-center space-y-4">
-              <div 
-                className="w-12 h-12 mx-auto rounded-lg flex items-center justify-center"
-                style={{ backgroundColor: 'var(--color-success-100)', color: 'var(--color-success-600)' }}
-              >
-                <HiStar className="w-6 h-6" />
-              </div>
-              <h3 
-                className="text-lg font-semibold"
-                style={{ color: 'var(--color-text-primary)' }}
-              >
-                Recomendaciones Inteligentes
-              </h3>
-              <p 
-                className="text-sm leading-relaxed"
-                style={{ color: 'var(--color-text-secondary)' }}
-              >
-                Algoritmo que encuentra propiedades similares basado en múltiples características y preferencias.
-              </p>
-              <Link href="/properties">
-                <Button variant="success" size="sm" className="w-full">
-                  Ver Recomendaciones
-                </Button>
-              </Link>
+          <div className="text-center space-y-4">
+            <div className="w-16 h-16 rounded-xl mx-auto flex items-center justify-center bg-success-100">
+              <HiStar className="w-8 h-8 text-success-600" />
             </div>
-          </Card>
+            <h3 className="text-xl font-semibold text-primary">
+              Recomendaciones IA
+            </h3>
+            <p className="text-secondary">
+              Algoritmo inteligente que encuentra propiedades similares según tus preferencias.
+            </p>
+          </div>
 
-          <Card hover padding="lg" shadow="md">
-            <div className="text-center space-y-4">
-              <div 
-                className="w-12 h-12 mx-auto rounded-lg flex items-center justify-center"
-                style={{ backgroundColor: 'var(--color-warning-100)', color: 'var(--color-warning-600)' }}
-              >
-                <HiHeart className="w-6 h-6" />
-              </div>
-              <h3 
-                className="text-lg font-semibold"
-                style={{ color: 'var(--color-text-primary)' }}
-              >
-                Lista de Favoritos
-              </h3>
-              <p 
-                className="text-sm leading-relaxed"
-                style={{ color: 'var(--color-text-secondary)' }}
-              >
-                Guarda tus propiedades favoritas para acceder fácilmente y comparar opciones.
-              </p>
-              <Link href="/favorites">
-                <Button variant="outline" size="sm" className="w-full">
-                  Mis Favoritos
-                </Button>
-              </Link>
+          <div className="text-center space-y-4">
+            <div className="w-16 h-16 rounded-xl mx-auto flex items-center justify-center bg-warning-100">
+              <HiHeart className="w-8 h-8 text-warning-600" />
             </div>
-          </Card>
-        </div>
+            <h3 className="text-xl font-semibold text-primary">
+              Lista de Favoritos
+            </h3>
+            <p className="text-secondary">
+              Guarda y organiza las propiedades que más te interesan en tu lista personal.
+            </p>
+          </div>
 
-        {/* Características Técnicas */}
-        <Card 
-          padding="lg" 
-          shadow="lg"
-          style={{ backgroundColor: 'var(--color-primary-50)', borderColor: 'var(--color-primary-200)' }}
-        >
-          <div className="space-y-6">
-            <div className="text-center">
-              <h2 
-                className="text-2xl font-bold"
-                style={{ color: 'var(--color-text-primary)' }}
-              >
-                Características del Sistema
-              </h2>
-              <p 
-                className="mt-2"
-                style={{ color: 'var(--color-text-secondary)' }}
-              >
-                Tecnología avanzada para encontrar la propiedad perfecta
-              </p>
+          <div className="text-center space-y-4">
+            <div className="w-16 h-16 rounded-xl mx-auto flex items-center justify-center bg-info-100">
+              <HiSearch className="w-8 h-8 text-info-600" />
             </div>
-            
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3">
-                  <div 
-                    className="w-8 h-8 rounded-full flex items-center justify-center"
-                    style={{ backgroundColor: 'var(--color-primary-600)', color: 'white' }}
-                  >
-                    <HiSearchCircle className="w-5 h-5" />
-                  </div>
-                  <h4 
-                    className="font-semibold"
-                    style={{ color: 'var(--color-text-primary)' }}
-                  >
-                    Algoritmo de Similitud Avanzado
-                  </h4>
-                </div>
-                <p 
-                  className="text-sm leading-relaxed ml-11"
-                  style={{ color: 'var(--color-text-secondary)' }}
-                >
-                  Sistema de pesos: ciudad (40%), tipo (30%), precio (20%) y ambientes (10%) para recomendaciones precisas.
-                </p>
-              </div>
-              
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3">
-                  <div 
-                    className="w-8 h-8 rounded-full flex items-center justify-center"
-                    style={{ backgroundColor: 'var(--color-success-600)', color: 'white' }}
-                  >
-                    <HiChartBar className="w-5 h-5" />
-                  </div>
-                  <h4 
-                    className="font-semibold"
-                    style={{ color: 'var(--color-text-primary)' }}
-                  >
-                    Datos de Propiedades Reales
-                  </h4>
-                </div>
-                <p 
-                  className="text-sm leading-relaxed ml-11"
-                  style={{ color: 'var(--color-text-secondary)' }}
-                >
-                  100 propiedades en ciudades argentinas: Buenos Aires, Córdoba, Rosario, La Plata, Neuquén y más.
-                </p>
-              </div>
-              
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3">
-                  <div 
-                    className="w-8 h-8 rounded-full flex items-center justify-center"
-                    style={{ backgroundColor: 'var(--color-info-600)', color: 'white' }}
-                  >
-                    <HiShieldCheck className="w-5 h-5" />
-                  </div>
-                  <h4 
-                    className="font-semibold"
-                    style={{ color: 'var(--color-text-primary)' }}
-                  >
-                    APIs Robustas y Seguras
-                  </h4>
-                </div>
-                <p 
-                  className="text-sm leading-relaxed ml-11"
-                  style={{ color: 'var(--color-text-secondary)' }}
-                >
-                  Backend con validación completa, paginación, filtros avanzados y manejo centralizado de errores.
-                </p>
-              </div>
-              
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3">
-                  <div 
-                    className="w-8 h-8 rounded-full flex items-center justify-center"
-                    style={{ backgroundColor: 'var(--color-warning-600)', color: 'white' }}
-                  >
-                    <HiDeviceMobile className="w-5 h-5" />
-                  </div>
-                  <h4 
-                    className="font-semibold"
-                    style={{ color: 'var(--color-text-primary)' }}
-                  >
-                    Diseño Responsive y Modular
-                  </h4>
-                </div>
-                <p 
-                  className="text-sm leading-relaxed ml-11"
-                  style={{ color: 'var(--color-text-secondary)' }}
-                >
-                  Interfaz optimizada para desktop, tablet y móvil con sistema de diseño consistente.
-                </p>
-              </div>
+            <h3 className="text-xl font-semibold text-primary">
+              Búsqueda Avanzada
+            </h3>
+            <p className="text-secondary">
+              Filtra por ciudad, tipo, precio, ambientes y superficie para encontrar exactamente lo que buscas.
+            </p>
+          </div>
+
+          <div className="text-center space-y-4">
+            <div className="w-16 h-16 rounded-xl mx-auto flex items-center justify-center bg-error-100">
+              <HiChartBar className="w-8 h-8 text-error-600" />
+            </div>
+            <h3 className="text-xl font-semibold text-primary">
+              Análisis de Mercado
+            </h3>
+            <p className="text-secondary">
+              Estadísticas y métricas detalladas para ayudarte a tomar la mejor decisión.
+            </p>
+          </div>
+
+          <div className="text-center space-y-4">
+            <div className="w-16 h-16 rounded-xl mx-auto flex items-center justify-center bg-primary-100">
+              <HiShieldCheck className="w-8 h-8 text-primary-600" />
+            </div>
+            <h3 className="text-xl font-semibold text-primary">
+              Información Confiable
+            </h3>
+            <p className="text-secondary">
+              Datos verificados y actualizados con detalles completos de cada propiedad.
+            </p>
+          </div>
+        </section>
+
+        {/* Estadísticas rápidas */}
+        <section className="bg-surface-gray rounded-2xl p-8">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold text-primary">
+              Nuestros Números
+            </h2>
+            <p className="text-secondary mt-2">
+              Datos actualizados del sistema
+            </p>
+          </div>
+          
+          <div className="grid-stats">
+            <div className="stat-card bg-surface">
+              <div className="text-3xl font-bold text-primary-600">100</div>
+              <div className="text-sm text-secondary">Propiedades</div>
+            </div>
+            <div className="stat-card bg-surface">
+              <div className="text-3xl font-bold text-success-600">8</div>
+              <div className="text-sm text-secondary">Ciudades</div>
+            </div>
+            <div className="stat-card bg-surface">
+              <div className="text-3xl font-bold text-warning-600">2</div>
+              <div className="text-sm text-secondary">Tipos</div>
+            </div>
+            <div className="stat-card bg-surface">
+              <div className="text-3xl font-bold text-info-600">AI</div>
+              <div className="text-sm text-secondary">Powered</div>
             </div>
           </div>
-        </Card>
+        </section>
+
+        {/* Tecnología */}
+        <section className="text-center space-y-8">
+          <div className="space-y-4">
+            <div className="w-16 h-16 rounded-xl mx-auto flex items-center justify-center bg-info-100">
+              <HiDeviceMobile className="w-8 h-8 text-info-600" />
+            </div>
+            <h2 className="text-2xl font-bold text-primary">
+              Tecnología Moderna
+            </h2>
+            <p className="text-lg max-w-2xl mx-auto text-secondary">
+              Construido con las últimas tecnologías web para garantizar la mejor experiencia de usuario.
+            </p>
+          </div>
+          
+          <div className="flex flex-wrap justify-center gap-4 text-sm">
+            <span className="px-4 py-2 rounded-full bg-primary-100 text-primary-700 font-medium">
+              Next.js 15.3.4
+            </span>
+            <span className="px-4 py-2 rounded-full bg-primary-100 text-primary-700 font-medium">
+              React 19
+            </span>
+            <span className="px-4 py-2 rounded-full bg-primary-100 text-primary-700 font-medium">
+              TypeScript
+            </span>
+            <span className="px-4 py-2 rounded-full bg-primary-100 text-primary-700 font-medium">
+              Tailwind CSS
+            </span>
+          </div>
+        </section>
+
+        {/* Call to Action final */}
+        <section className="text-center space-y-6 py-12">
+          <h2 className="text-3xl font-bold text-primary">
+            ¿Listo para encontrar tu próxima propiedad?
+          </h2>
+          <p className="text-lg text-secondary">
+            Comienza explorando nuestro catálogo completo
+          </p>
+          <Link href="/properties">
+            <Button variant="primary" size="lg">
+              Ver Todas las Propiedades
+              <HiArrowRight className="w-5 h-5 ml-2" />
+            </Button>
+          </Link>
+        </section>
       </div>
     </MainLayout>
   );

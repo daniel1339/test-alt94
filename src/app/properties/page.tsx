@@ -11,20 +11,10 @@ export default function PropertiesPage() {
         {/* Header de la página */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
           <div>
-            <h1 
-              className="text-3xl font-bold"
-              style={{ 
-                color: 'var(--color-text-primary)',
-                fontSize: 'var(--font-size-3xl)',
-                fontWeight: 'var(--font-weight-bold)'
-              }}
-            >
+            <h1 className="text-3xl font-bold text-primary">
               Propiedades Disponibles
             </h1>
-            <p 
-              className="mt-2 text-lg"
-              style={{ color: 'var(--color-text-secondary)' }}
-            >
+            <p className="mt-2 text-lg text-secondary">
               Explora nuestro catálogo completo de propiedades
             </p>
           </div>
@@ -43,79 +33,43 @@ export default function PropertiesPage() {
         </div>
 
         {/* Estadísticas rápidas */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div 
-            className="bg-primary-50 rounded-lg p-4 text-center"
-            style={{ backgroundColor: 'var(--color-primary-50)' }}
-          >
-            <div 
-              className="text-2xl font-bold flex items-center justify-center space-x-2"
-              style={{ color: 'var(--color-primary-600)' }}
-            >
+        <div className="grid-stats">
+          <div className="stat-card bg-primary-50">
+            <div className="text-2xl font-bold flex items-center justify-center space-x-2 text-primary-600">
               <HiHome className="w-6 h-6" />
               <span>100</span>
             </div>
-            <div 
-              className="text-sm"
-              style={{ color: 'var(--color-text-secondary)' }}
-            >
+            <div className="text-sm text-secondary">
               Propiedades totales
             </div>
           </div>
           
-          <div 
-            className="bg-success-50 rounded-lg p-4 text-center"
-            style={{ backgroundColor: 'var(--color-success-50)' }}
-          >
-            <div 
-              className="text-2xl font-bold flex items-center justify-center space-x-2"
-              style={{ color: 'var(--color-success-600)' }}
-            >
+          <div className="stat-card bg-success-50">
+            <div className="text-2xl font-bold flex items-center justify-center space-x-2 text-success-600">
               <HiLocationMarker className="w-6 h-6" />
               <span>8</span>
             </div>
-            <div 
-              className="text-sm"
-              style={{ color: 'var(--color-text-secondary)' }}
-            >
+            <div className="text-sm text-secondary">
               Ciudades disponibles
             </div>
           </div>
 
-          <div 
-            className="bg-warning-50 rounded-lg p-4 text-center"
-            style={{ backgroundColor: 'var(--color-warning-50)' }}
-          >
-            <div 
-              className="text-2xl font-bold flex items-center justify-center space-x-2"
-              style={{ color: 'var(--color-warning-600)' }}
-            >
+          <div className="stat-card bg-warning-50">
+            <div className="text-2xl font-bold flex items-center justify-center space-x-2 text-warning-600">
               <HiOfficeBuilding className="w-6 h-6" />
               <span>2</span>
             </div>
-            <div 
-              className="text-sm"
-              style={{ color: 'var(--color-text-secondary)' }}
-            >
+            <div className="text-sm text-secondary">
               Tipos (Casa/Depto)
             </div>
           </div>
 
-          <div 
-            className="bg-info-50 rounded-lg p-4 text-center"
-            style={{ backgroundColor: 'var(--color-info-50)' }}
-          >
-            <div 
-              className="text-2xl font-bold flex items-center justify-center space-x-2"
-              style={{ color: 'var(--color-info-600)' }}
-            >
+          <div className="stat-card bg-info-50">
+            <div className="text-2xl font-bold flex items-center justify-center space-x-2 text-info-600">
               <HiSparkles className="w-6 h-6" />
               <span>AI</span>
             </div>
-            <div 
-              className="text-sm"
-              style={{ color: 'var(--color-text-secondary)' }}
-            >
+            <div className="text-sm text-secondary">
               Recomendaciones
             </div>
           </div>

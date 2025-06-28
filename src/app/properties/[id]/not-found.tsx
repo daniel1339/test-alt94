@@ -1,14 +1,11 @@
 import Link from 'next/link';
 import { MainLayout } from '@/components/layout';
 import { Card, Button, Breadcrumb } from '@/components/ui';
+import { createNotFoundBreadcrumb } from '@/utils/breadcrumb';
 import { HiHome, HiExclamationCircle } from 'react-icons/hi';
 
 export default function PropertyNotFound() {
-  const breadcrumbItems = [
-    { label: 'Inicio', href: '/' },
-    { label: 'Propiedades', href: '/properties' },
-    { label: 'No encontrada', isActive: true }
-  ];
+  const breadcrumbItems = createNotFoundBreadcrumb('Propiedades');
 
   return (
     <MainLayout>
@@ -20,22 +17,13 @@ export default function PropertyNotFound() {
         <div className="min-h-[60vh] flex items-center justify-center">
           <Card padding="lg" className="text-center max-w-md mx-auto">
             <div className="space-y-6">
-              <HiExclamationCircle 
-                className="mx-auto text-6xl"
-                style={{ color: 'var(--color-warning-500)' }}
-              />
+              <HiExclamationCircle className="mx-auto text-6xl text-warning-500" />
               
               <div className="space-y-2">
-                <h1 
-                  className="text-2xl font-bold"
-                  style={{ color: 'var(--color-text-primary)' }}
-                >
+                <h1 className="text-2xl font-bold text-primary">
                   Propiedad no encontrada
                 </h1>
-                <p 
-                  className="text-sm"
-                  style={{ color: 'var(--color-text-secondary)' }}
-                >
+                <p className="text-sm text-secondary">
                   La propiedad que buscas no existe o ya no está disponible. 
                   Puede que haya sido vendida o el enlace sea incorrecto.
                 </p>

@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Property } from '@/types/property';
 import { Card, Button } from '@/components/ui';
+import { formatPrice, formatRooms, formatArea } from '@/utils/format';
 import { HiLocationMarker, HiHome, HiViewGrid, HiHeart } from 'react-icons/hi';
 
 interface PropertyCardProps {
@@ -15,15 +16,6 @@ export function PropertyCard({
   showRecommendations = false,
   className 
 }: PropertyCardProps) {
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('es-AR', {
-      style: 'currency',
-      currency: 'ARS',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    }).format(price);
-  };
-
   return (
     <Card 
       hover 
@@ -43,25 +35,13 @@ export function PropertyCard({
         />
         
         {/* Badge del tipo */}
-        <div 
-          className="absolute top-3 left-3 px-2 py-1 rounded-md text-xs font-medium flex items-center space-x-1"
-          style={{ 
-            backgroundColor: 'var(--color-primary-600)',
-            color: 'white'
-          }}
-        >
+        <div className="absolute top-3 left-3 badge-type">
           <HiHome className="w-3 h-3" />
           <span>{property.tipo}</span>
         </div>
 
         {/* Badge de precio */}
-        <div 
-          className="absolute top-3 right-3 px-2 py-1 rounded-md text-xs font-bold"
-          style={{ 
-            backgroundColor: 'rgba(0, 0, 0, 0.7)',
-            color: 'white'
-          }}
-        >
+        <div className="absolute top-3 right-3 px-2 py-1 rounded-md text-xs font-bold bg-black/70 text-white">
           {formatPrice(property.precio)}
         </div>
       </div>
@@ -70,16 +50,10 @@ export function PropertyCard({
       <div className="p-4 space-y-3">
         {/* Título y ubicación */}
         <div>
-          <h3 
-            className="font-semibold text-lg leading-tight mb-1"
-            style={{ color: 'var(--color-text-primary)' }}
-          >
+          <h3 className="font-semibold text-lg leading-tight mb-1 text-primary">
             {property.titulo}
           </h3>
-          <p 
-            className="text-sm flex items-center"
-            style={{ color: 'var(--color-text-secondary)' }}
-          >
+          <p className="text-sm flex items-center text-secondary">
             <HiLocationMarker className="w-4 h-4 mr-1" />
             {property.ciudad}
           </p>
@@ -87,28 +61,19 @@ export function PropertyCard({
 
         {/* Características */}
         <div className="flex items-center space-x-4 text-sm">
-          <div 
-            className="flex items-center"
-            style={{ color: 'var(--color-text-muted)' }}
-          >
+          <div className="flex items-center text-muted">
             <HiHome className="w-4 h-4 mr-1" />
-            {property.ambientes} amb.
+            {formatRooms(property.ambientes)}
           </div>
           
-          <div 
-            className="flex items-center"
-            style={{ color: 'var(--color-text-muted)' }}
-          >
+          <div className="flex items-center text-muted">
             <HiViewGrid className="w-4 h-4 mr-1" />
-            {property.metros_cuadrados} m²
+            {formatArea(property.metros_cuadrados)}
           </div>
         </div>
 
         {/* Precio destacado */}
-        <div 
-          className="text-xl font-bold"
-          style={{ color: 'var(--color-primary-600)' }}
-        >
+        <div className="price-display">
           {formatPrice(property.precio)}
         </div>
 

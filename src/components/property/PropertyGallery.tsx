@@ -14,19 +14,10 @@ export function PropertyGallery({ images, title, className = '' }: PropertyGalle
   // Si no hay imágenes, mostrar placeholder
   if (!images || images.length === 0) {
     return (
-      <div 
-        className={`aspect-video bg-gray-100 rounded-xl flex items-center justify-center ${className}`}
-        style={{ backgroundColor: 'var(--color-surface-secondary)' }}
-      >
+      <div className={`aspect-video bg-surface-secondary rounded-xl flex items-center justify-center ${className}`}>
         <div className="text-center">
-          <HiPhotograph 
-            className="w-12 h-12 mx-auto mb-2"
-            style={{ color: 'var(--color-text-muted)' }}
-          />
-          <p 
-            className="text-sm"
-            style={{ color: 'var(--color-text-muted)' }}
-          >
+          <HiPhotograph className="w-12 h-12 mx-auto mb-2 text-muted" />
+          <p className="text-sm text-muted">
             Sin imágenes disponibles
           </p>
         </div>

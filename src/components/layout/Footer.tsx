@@ -1,76 +1,80 @@
 import Link from 'next/link';
 
 export function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer 
-      className="bg-surface-gray border-t border-default"
-      style={{ 
-        backgroundColor: 'var(--color-surface-gray)',
-        borderColor: 'var(--color-border)'
-      }}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="text-center space-y-4">
+    <footer className="bg-surface border-t border-light mt-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           
-          {/* Información principal */}
+          {/* Logo y descripción */}
+          <div className="md:col-span-2">
+            <div className="flex items-center space-x-2 mb-4">
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold bg-primary-600">
+                P
+              </div>
+              <h3 className="text-lg font-semibold text-primary">
+                PropiedadesApp
+              </h3>
+            </div>
+            <p className="text-sm leading-relaxed max-w-md text-secondary">
+              Sistema de recomendación de propiedades con algoritmo inteligente. 
+              Encuentra tu hogar ideal basado en ubicación, tipo, precio y características.
+            </p>
+          </div>
+
+          {/* Enlaces rápidos */}
           <div>
-            <p 
-              className="text-lg font-medium"
-              style={{ color: 'var(--color-text-primary)' }}
-            >
-              PropiedadesApp - Sistema de Recomendación
-            </p>
-            <p 
-              className="text-sm mt-1"
-              style={{ color: 'var(--color-text-secondary)' }}
-            >
-              Encuentra propiedades similares con tecnología inteligente
-            </p>
+            <h4 className="font-semibold mb-4 text-primary">Enlaces</h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link 
+                  href="/properties" 
+                  className="text-secondary hover:text-primary transition-colors"
+                >
+                  Todas las Propiedades
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/favorites" 
+                  className="text-secondary hover:text-primary transition-colors"
+                >
+                  Mis Favoritos
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/" 
+                  className="text-secondary hover:text-primary transition-colors"
+                >
+                  Inicio
+                </Link>
+              </li>
+            </ul>
           </div>
 
-          {/* Links útiles */}
-          <div className="flex justify-center space-x-6 text-sm">
-            <Link 
-              href="/"
-              className="text-muted hover:text-primary transition-colors focus-ring rounded px-2 py-1"
-              style={{ transition: 'color var(--transition-fast)' }}
-            >
-              Inicio
-            </Link>
-            <Link 
-              href="/properties"
-              className="text-muted hover:text-primary transition-colors focus-ring rounded px-2 py-1"
-              style={{ transition: 'color var(--transition-fast)' }}
-            >
-              Propiedades
-            </Link>
-            <Link 
-              href="/favorites"
-              className="text-muted hover:text-primary transition-colors focus-ring rounded px-2 py-1"
-              style={{ transition: 'color var(--transition-fast)' }}
-            >
-              Favoritos
-            </Link>
+          {/* Información técnica */}
+          <div>
+            <h4 className="font-semibold mb-4 text-primary">Tecnología</h4>
+            <ul className="space-y-2 text-sm text-secondary">
+              <li>Next.js 15.3.4</li>
+              <li>React 19</li>
+              <li>TypeScript</li>
+              <li>Tailwind CSS</li>
+            </ul>
           </div>
+        </div>
 
-          {/* Copyright y atribución */}
-          <div 
-            className="pt-4 border-t border-light"
-            style={{ borderColor: 'var(--color-border-light)' }}
-          >
-            <p 
-              className="text-xs"
-              style={{ color: 'var(--color-text-muted)' }}
-            >
-              © 2025 PropiedadesApp. Desarrollado para <span className="font-medium">Alt94</span> - Prueba Técnica
-            </p>
-            <p 
-              className="text-xs mt-1"
-              style={{ color: 'var(--color-text-light)' }}
-            >
-              Sistema construido con Next.js, TypeScript y algoritmos de similitud
-            </p>
-          </div>
+        {/* Copyright */}
+        <div className="mt-12 pt-8 border-t border-light text-center">
+          <p className="text-sm text-muted">
+            © {currentYear} PropiedadesApp. 
+            <span className="text-light ml-1">
+              Desarrollado como prueba técnica para Alt94.
+            </span>
+          </p>
         </div>
       </div>
     </footer>

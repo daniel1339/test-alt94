@@ -19,16 +19,10 @@ export function Header() {
           <div className="flex items-center space-x-8">
             <Link href="/" className="flex items-center group">
               <div className="flex items-center space-x-2">
-                <div 
-                  className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold"
-                  style={{ backgroundColor: 'var(--color-primary-600)' }}
-                >
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold bg-primary-600">
                   P
                 </div>
-                <h1 
-                  className="text-xl font-bold transition-colors group-hover:text-primary-700"
-                  style={{ color: 'var(--color-text-primary)' }}
-                >
+                <h1 className="text-xl font-bold transition-colors group-hover:text-primary-700 text-primary">
                   PropiedadesApp
                 </h1>
               </div>
@@ -60,8 +54,7 @@ export function Header() {
             
             {/* Menú móvil (placeholder) */}
             <button 
-              className="md:hidden p-2 rounded-md focus-ring"
-              style={{ color: 'var(--color-text-secondary)' }}
+              className="md:hidden p-2 rounded-md focus-ring text-secondary"
               aria-label="Menú principal"
             >
               <HiMenu className="w-5 h-5" />

@@ -3,6 +3,7 @@
 import { Property } from '@/types/property';
 import { PropertyGallery } from './PropertyGallery';
 import { Card, Button } from '@/components/ui';
+import { formatPrice, formatPricePerM2, formatPricePerRoom, formatArea, formatRooms } from '@/utils/format';
 import Link from 'next/link';
 import { 
   HiHome, 
@@ -20,25 +21,6 @@ interface PropertyDetailProps {
 }
 
 export function PropertyDetail({ property, className = '' }: PropertyDetailProps) {
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('es-AR', {
-      style: 'currency',
-      currency: 'ARS',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    }).format(price);
-  };
-
-  const formatPricePerM2 = (price: number, m2: number) => {
-    const pricePerM2 = price / m2;
-    return new Intl.NumberFormat('es-AR', {
-      style: 'currency',
-      currency: 'ARS',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    }).format(pricePerM2);
-  };
-
   return (
     <div className={`space-y-8 ${className}`}>
       
@@ -46,27 +28,15 @@ export function PropertyDetail({ property, className = '' }: PropertyDetailProps
       <div className="space-y-4">
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
           <div className="space-y-2">
-            <h1 
-              className="text-3xl font-bold"
-              style={{ color: 'var(--color-text-primary)' }}
-            >
+            <h1 className="text-3xl font-bold text-primary">
               {property.titulo}
             </h1>
             <div className="flex items-center space-x-4 text-lg">
-              <div 
-                className="flex items-center"
-                style={{ color: 'var(--color-text-secondary)' }}
-              >
+              <div className="flex items-center text-secondary">
                 <HiLocationMarker className="w-5 h-5 mr-2" />
                 {property.ciudad}
               </div>
-              <div 
-                className="flex items-center px-3 py-1 rounded-full text-sm font-medium"
-                style={{ 
-                  backgroundColor: 'var(--color-primary-100)',
-                  color: 'var(--color-primary-700)'
-                }}
-              >
+              <div className="badge-type">
                 <HiHome className="w-4 h-4 mr-1" />
                 {property.tipo}
               </div>
@@ -94,7 +64,7 @@ export function PropertyDetail({ property, className = '' }: PropertyDetailProps
       </div>
 
       {/* Grid principal */}
-      <div className="grid lg:grid-cols-3 gap-8">
+      <div className="grid-detail">
         
         {/* Galería - 2 columnas en desktop */}
         <div className="lg:col-span-2">
@@ -110,16 +80,10 @@ export function PropertyDetail({ property, className = '' }: PropertyDetailProps
           {/* Precio */}
           <Card padding="lg" shadow="md">
             <div className="text-center space-y-3">
-              <div 
-                className="text-3xl font-bold"
-                style={{ color: 'var(--color-primary-600)' }}
-              >
+              <div className="price-display">
                 {formatPrice(property.precio)}
               </div>
-              <div 
-                className="text-sm"
-                style={{ color: 'var(--color-text-secondary)' }}
-              >
+              <div className="text-sm text-secondary">
                 {formatPricePerM2(property.precio, property.metros_cuadrados)} por m²
               </div>
               <Button variant="primary" size="lg" className="w-full">
@@ -131,57 +95,36 @@ export function PropertyDetail({ property, className = '' }: PropertyDetailProps
 
           {/* Características principales */}
           <Card padding="lg" shadow="md">
-            <h3 
-              className="text-lg font-semibold mb-4"
-              style={{ color: 'var(--color-text-primary)' }}
-            >
+            <h3 className="text-lg font-semibold mb-4 text-primary">
               Características
             </h3>
             <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div 
-                  className="flex items-center"
-                  style={{ color: 'var(--color-text-secondary)' }}
-                >
-                  <HiHome className="w-5 h-5 mr-3" />
+              <div className="feature-row">
+                <div className="feature-label">
+                  <HiHome className="w-5 h-5" />
                   <span>Ambientes</span>
                 </div>
-                <span 
-                  className="font-semibold"
-                  style={{ color: 'var(--color-text-primary)' }}
-                >
+                <span className="feature-value">
                   {property.ambientes}
                 </span>
               </div>
               
-              <div className="flex items-center justify-between">
-                <div 
-                  className="flex items-center"
-                  style={{ color: 'var(--color-text-secondary)' }}
-                >
-                  <HiViewGrid className="w-5 h-5 mr-3" />
+              <div className="feature-row">
+                <div className="feature-label">
+                  <HiViewGrid className="w-5 h-5" />
                   <span>Superficie</span>
                 </div>
-                <span 
-                  className="font-semibold"
-                  style={{ color: 'var(--color-text-primary)' }}
-                >
-                  {property.metros_cuadrados} m²
+                <span className="feature-value">
+                  {formatArea(property.metros_cuadrados)}
                 </span>
               </div>
               
-              <div className="flex items-center justify-between">
-                <div 
-                  className="flex items-center"
-                  style={{ color: 'var(--color-text-secondary)' }}
-                >
-                  <HiLocationMarker className="w-5 h-5 mr-3" />
+              <div className="feature-row">
+                <div className="feature-label">
+                  <HiLocationMarker className="w-5 h-5" />
                   <span>Ubicación</span>
                 </div>
-                <span 
-                  className="font-semibold"
-                  style={{ color: 'var(--color-text-primary)' }}
-                >
+                <span className="feature-value">
                   {property.ciudad}
                 </span>
               </div>
@@ -190,38 +133,32 @@ export function PropertyDetail({ property, className = '' }: PropertyDetailProps
 
           {/* Información adicional */}
           <Card padding="lg" shadow="md">
-            <h3 
-              className="text-lg font-semibold mb-4"
-              style={{ color: 'var(--color-text-primary)' }}
-            >
+            <h3 className="text-lg font-semibold mb-4 text-primary">
               Información adicional
             </h3>
             <div className="space-y-3 text-sm">
               <div className="flex justify-between">
-                <span style={{ color: 'var(--color-text-secondary)' }}>
+                <span className="text-secondary">
                   ID de la propiedad:
                 </span>
-                <span 
-                  className="font-mono"
-                  style={{ color: 'var(--color-text-muted)' }}
-                >
+                <span className="font-mono text-muted">
                   #{property.id}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span style={{ color: 'var(--color-text-secondary)' }}>
+                <span className="text-secondary">
                   Tipo de propiedad:
                 </span>
-                <span style={{ color: 'var(--color-text-primary)' }}>
+                <span className="text-primary">
                   {property.tipo}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span style={{ color: 'var(--color-text-secondary)' }}>
+                <span className="text-secondary">
                   Precio por ambiente:
                 </span>
-                <span style={{ color: 'var(--color-text-primary)' }}>
-                  {formatPrice(property.precio / property.ambientes)}
+                <span className="text-primary">
+                  {formatPricePerRoom(property.precio, property.ambientes)}
                 </span>
               </div>
             </div>
@@ -231,16 +168,10 @@ export function PropertyDetail({ property, className = '' }: PropertyDetailProps
 
       {/* Descripción extendida (placeholder) */}
       <Card padding="lg" shadow="md">
-        <h3 
-          className="text-xl font-semibold mb-4"
-          style={{ color: 'var(--color-text-primary)' }}
-        >
+        <h3 className="text-xl font-semibold mb-4 text-primary">
           Descripción
         </h3>
-        <div 
-          className="prose prose-gray max-w-none"
-          style={{ color: 'var(--color-text-secondary)' }}
-        >
+        <div className="prose prose-gray max-w-none text-secondary">
           <p>
             Excelente {property.tipo.toLowerCase()} ubicada en {property.ciudad}, 
             con {property.ambientes} ambientes distribuidos en {property.metros_cuadrados} metros cuadrados. 
@@ -256,7 +187,7 @@ export function PropertyDetail({ property, className = '' }: PropertyDetailProps
           </p>
           <ul>
             <li>{property.ambientes} ambientes amplios y luminosos</li>
-            <li>{property.metros_cuadrados} m² de superficie total</li>
+            <li>{formatArea(property.metros_cuadrados)} de superficie total</li>
             <li>Ubicación estratégica en {property.ciudad}</li>
             <li>Excelente relación precio-calidad</li>
           </ul>
