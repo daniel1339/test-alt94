@@ -70,24 +70,4 @@ export function useProperty(id: string): UsePropertyResult {
   };
 }
 
-/**
- * Hook para cargar propiedades desde el servidor (SSR)
- */
-export async function getPropertySSR(id: string): Promise<Property | null> {
-  try {
-    const baseUrl = process.env.NEXTAUTH_URL || process.env.VERCEL_URL || 'http://localhost:3000';
-    const response = await fetch(`${baseUrl}/api/properties/${id}`, {
-      cache: 'no-store'
-    });
-
-    if (!response.ok) {
-      return null;
-    }
-
-    const data: ApiResponse = await response.json();
-    return data.success ? data.data : null;
-  } catch (error) {
-    console.error('Error fetching property SSR:', error);
-    return null;
-  }
-} 
+// Funciones SSR movidas a src/lib/ssr/property.ts 

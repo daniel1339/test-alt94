@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { MainLayout } from '@/components/layout';
 import { PropertyDetail } from '@/components/property';
 import { Breadcrumb } from '@/components/ui';
-import { getPropertySSR } from '@/hooks/useProperty';
+import { getPropertySSR } from '@/lib/ssr/property';
 import { createPropertyDetailBreadcrumb } from '@/utils/breadcrumb';
 import { formatPrice } from '@/utils/format';
 

@@ -73,24 +73,4 @@ export function useRecommendations(propertyId: string): UseRecommendationsResult
   };
 }
 
-/**
- * Hook para cargar recomendaciones desde el servidor (SSR)
- */
-export async function getRecommendationsSSR(propertyId: string): Promise<PropertyWithScore[]> {
-  try {
-    const baseUrl = process.env.NEXTAUTH_URL || process.env.VERCEL_URL || 'http://localhost:3000';
-    const response = await fetch(`${baseUrl}/api/recommendations/${propertyId}`, {
-      cache: 'no-store'
-    });
-
-    if (!response.ok) {
-      return [];
-    }
-
-    const data: RecommendationsApiResponse = await response.json();
-    return data.success ? data.data.recommendations : [];
-  } catch (error) {
-    console.error('Error fetching recommendations SSR:', error);
-    return [];
-  }
-} 
+// Funciones SSR movidas a src/lib/ssr/property.ts 

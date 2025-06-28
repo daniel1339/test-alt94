@@ -1,4 +1,4 @@
-import { Property } from '@/types/property';
+import { Property, PropertyWithScore } from '@/types/property';
 
 /**
  * Calculates similarity score between two properties using weighted criteria
@@ -38,7 +38,7 @@ export function findSimilarProperties(
   targetProperty: Property, 
   allProperties: Property[], 
   limit: number = 3
-): Property[] {
+): PropertyWithScore[] {
   const similarities = allProperties
     .filter(prop => prop.id !== targetProperty.id) // Exclude the target property itself
     .map(prop => ({
