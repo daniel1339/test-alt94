@@ -36,7 +36,7 @@ export const createPropertyDetailBreadcrumb = (title: string): BreadcrumbItem[] 
  */
 export const createRecommendationsBreadcrumb = (title: string): BreadcrumbItem[] => [
   ...propertiesBreadcrumb,
-  { label: title, href: `/properties/${extractIdFromTitle(title)}` },
+  { label: title },
   { label: 'Similares', isActive: true }
 ];
 
@@ -64,12 +64,4 @@ export const createLoadingBreadcrumb = (section: string): BreadcrumbItem[] => [
   ...baseBreadcrumb,
   { label: section, href: `/${section.toLowerCase()}` },
   { label: 'Cargando...', isActive: true }
-];
-
-/**
- * Extrae ID del título (helper function)
- */
-function extractIdFromTitle(_title: string): string {
-  // Esta función se puede mejorar según el patrón de títulos
-  return '1'; // placeholder
-} 
+]; 

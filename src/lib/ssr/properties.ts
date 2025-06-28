@@ -16,16 +16,19 @@ export async function getAllPropertiesSSR(): Promise<Property[]> {
     }
     
     // Transformar y validar los datos
-    const properties: Property[] = propertiesData.map((prop: any) => ({
-      id: prop.id,
-      titulo: prop.titulo || '',
-      ciudad: prop.ciudad || '',
-      tipo: prop.tipo || 'Casa',
-      precio: Number(prop.precio) || 0,
-      ambientes: Number(prop.ambientes) || 1,
-      metros_cuadrados: Number(prop.metros_cuadrados) || 0,
-      imagen: prop.imagen || ''
-    }));
+    const properties: Property[] = propertiesData.map((prop: unknown) => {
+      const p = prop as Record<string, unknown>;
+      return {
+        id: Number(p.id) || 0,
+        titulo: String(p.titulo || ''),
+        ciudad: String(p.ciudad || ''),
+        tipo: (p.tipo === 'Casa' || p.tipo === 'Departamento') ? p.tipo as 'Casa' | 'Departamento' : 'Casa',
+        precio: Number(p.precio) || 0,
+        ambientes: Number(p.ambientes) || 1,
+        metros_cuadrados: Number(p.metros_cuadrados) || 0,
+        imagen: String(p.imagen || '')
+      };
+    });
     
     return properties;
   } catch (error) {

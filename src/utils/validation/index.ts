@@ -70,7 +70,7 @@ export function validatePriceRange(minPriceParam: string | null, maxPriceParam: 
 /**
  * Validates property type parameter
  */
-export function validatePropertyType(tipo: string | null): { tipo: 'Casa' | 'Departamento' | null } | { error: any } {
+export function validatePropertyType(tipo: string | null): { tipo: 'Casa' | 'Departamento' | null } | { error: ReturnType<typeof ApiErrors.badRequest> } {
   if (!tipo) return { tipo: null };
   
   if (tipo !== 'Casa' && tipo !== 'Departamento') {

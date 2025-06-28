@@ -9,13 +9,14 @@ import { validatePropertyId, validateAndGetProperty } from '@/utils/validation';
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const propertyService = getPropertyService();
+    const { id } = await params;
     
     // Validate property ID
-    const idValidation = validatePropertyId(params.id);
+    const idValidation = validatePropertyId(id);
     if ('error' in idValidation) return idValidation.error;
 
     // Validate and get property
