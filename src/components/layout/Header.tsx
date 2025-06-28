@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Button } from '@/components/ui';
+import { Button, FavoritesCounter } from '@/components/ui';
 import { HiMenu } from 'react-icons/hi';
 
 export function Header() {
@@ -36,13 +36,7 @@ export function Header() {
               >
                 Propiedades
               </Link>
-              <Link 
-                href="/favorites" 
-                className="text-secondary hover:text-primary transition-colors focus-ring rounded-md px-2 py-1"
-                style={{ transition: 'color var(--transition-fast)' }}
-              >
-                Favoritos
-              </Link>
+              <FavoritesCounter />
             </nav>
           </div>
 
@@ -51,6 +45,11 @@ export function Header() {
             <Button variant="outline" size="sm">
               Filtros
             </Button>
+            
+            {/* Contador de favoritos móvil */}
+            <div className="md:hidden">
+              <FavoritesCounter />
+            </div>
             
             {/* Menú móvil (placeholder) */}
             <button 

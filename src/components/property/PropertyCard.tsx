@@ -5,9 +5,9 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Property } from '@/types/property';
-import { Card, Button } from '@/components/ui';
+import { Card, Button, FavoriteButton } from '@/components/ui';
 import { formatPrice, formatRooms, formatArea } from '@/utils/format';
-import { HiLocationMarker, HiHome, HiViewGrid, HiHeart } from 'react-icons/hi';
+import { HiLocationMarker, HiHome, HiViewGrid } from 'react-icons/hi';
 
 interface PropertyCardProps {
   property: Property;
@@ -140,20 +140,14 @@ export function PropertyCard({
               </Link>
             )}
             
-            {/* Botón favorito (placeholder) */}
-            <Button 
-              variant="ghost" 
-              size="sm"
-              className="px-2 flex-shrink-0 ml-auto"
-              aria-label="Agregar a favoritos"
-              title="Agregar a favoritos"
-              onClick={(e) => {
-                e.stopPropagation();
-                // Aquí irá la lógica de favoritos
-              }}
-            >
-              <HiHeart className="w-4 h-4" />
-            </Button>
+            {/* Botón de favoritos */}
+            <div className="flex-shrink-0 ml-auto">
+              <FavoriteButton 
+                property={property}
+                variant="icon"
+                size="sm"
+              />
+            </div>
           </div>
         </div>
       </Card>
