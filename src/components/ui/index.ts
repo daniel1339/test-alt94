@@ -4,4 +4,11 @@ export { LoadingSpinner, LoadingCard, LoadingPage, TextSkeleton } from './Loadin
 export { Breadcrumb } from './Breadcrumb';
 export { FavoriteButton } from './FavoriteButton';
 export { FavoritesCounter } from './FavoritesCounter';
-export { FavoritesList } from './FavoritesList'; 
+export { FavoritesList } from './FavoritesList';
+export { SearchInput } from './SearchInput';
+export { FilterSidebar } from './FilterSidebar';
+export { Pagination } from './Pagination';
+export { SortSelector } from './SortSelector';
+
+// Export types
+export type { FilterState } from './FilterSidebar'; 

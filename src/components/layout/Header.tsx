@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Button, FavoritesCounter } from '@/components/ui';
+import { Button, FavoritesCounter, SearchInput } from '@/components/ui';
 import { HiMenu } from 'react-icons/hi';
 
 export function Header() {
