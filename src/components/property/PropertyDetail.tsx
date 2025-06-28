@@ -3,7 +3,7 @@
 import { Property } from '@/types/property';
 import { PropertyGallery } from './PropertyGallery';
 import { Card, Button, FavoriteButton } from '@/components/ui';
-import { formatPrice, formatPricePerM2, formatPricePerRoom, formatArea, formatRooms } from '@/utils/format';
+import { formatPrice, formatPricePerM2, formatPricePerRoom, formatArea } from '@/utils/format';
 import Link from 'next/link';
 import { 
   HiHome, 

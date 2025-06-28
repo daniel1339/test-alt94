@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Button, FavoritesCounter, MobileMenu } from '@/components/ui';
+import { FavoritesCounter, MobileMenu } from '@/components/ui';
 
 export function Header() {
   return (

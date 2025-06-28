@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { PropertyWithScore } from '@/types/property';
 import { PropertyCard } from './PropertyCard';
 import { LoadingCard, LoadingPage } from '@/components/ui';
@@ -120,12 +121,12 @@ export function RecommendationsList({
         <p className="text-sm text-secondary mb-4">
           Explora todo nuestro catálogo de propiedades
         </p>
-        <a 
+        <Link 
           href="/properties"
           className="inline-flex items-center px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors text-sm font-medium"
         >
           Ver Todas las Propiedades
-        </a>
+        </Link>
       </div>
     </div>
   );

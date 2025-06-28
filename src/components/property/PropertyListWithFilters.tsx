@@ -42,7 +42,7 @@ export function PropertyListWithFilters({
     filters,
     currentPage,
     sortBy,
-    filteredProperties,
+
     paginatedProperties,
     totalPages,
     totalResults,
@@ -136,7 +136,7 @@ export function PropertyListWithFilters({
               </span>
               {searchQuery && (
                 <span className="px-2 py-1 bg-info-100 text-info-800 rounded text-xs">
-                  Búsqueda: "{searchQuery}"
+                  Búsqueda: &quot;{searchQuery}&quot;
                 </span>
               )}
               {filters.ciudad.map(city => (

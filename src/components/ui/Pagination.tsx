@@ -22,7 +22,7 @@ export function Pagination({
   totalPages,
   onPageChange,
   showNumbers = true,
-  showLoadMore = false,
+
   onLoadMore,
   hasNextPage = false,
   loading = false,
