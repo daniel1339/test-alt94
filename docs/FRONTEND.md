@@ -213,6 +213,37 @@ interface UseSearchAndFiltersReturn {
 }
 ```
 
+## Funciones Server-Side Rendering
+
+### lib/ssr/
+Carpeta que contiene funciones especializadas para Server-Side Rendering, separadas de los hooks de cliente.
+
+```
+src/lib/ssr/
+├── properties.ts     # Funciones SSR para propiedades
+└── property.ts       # Funciones SSR para propiedad individual
+```
+
+### properties.ts
+**Funciones principales:**
+```typescript
+getAllPropertiesSSR(): Promise<Property[]>
+getPropertiesStatsSSR(): Promise<PropertiesStats>
+```
+
+### property.ts  
+**Funciones principales:**
+```typescript
+getPropertySSR(id: string): Promise<Property | null>
+getRecommendationsSSR(id: string): Promise<Property[]>
+```
+
+**Propósito:**
+- Separación clara entre lógica de cliente (hooks) y servidor (SSR)
+- Optimización para Server Components de Next.js 15
+- Mejores tiempos de carga inicial
+- SEO mejorado con datos prerenderizados
+
 ## Responsive Design
 
 **Breakpoints:**

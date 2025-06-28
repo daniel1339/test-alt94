@@ -38,6 +38,7 @@ src/
 ├── components/        # Componentes React
 ├── contexts/          # Estado global
 ├── hooks/             # Hooks personalizados
+├── lib/               # Funciones Server-Side Rendering
 ├── services/          # Lógica de negocio
 ├── utils/             # Utilidades
 ├── types/             # Tipos TypeScript
