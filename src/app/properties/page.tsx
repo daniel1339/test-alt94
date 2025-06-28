@@ -14,9 +14,9 @@ export default async function PropertiesPage() {
         
         {/* Header de la página */}
         <div className="text-center space-y-4">
-          <h1 className="text-3xl font-bold text-primary">
-            Propiedades Disponibles
-          </h1>
+            <h1 className="text-3xl font-bold text-primary">
+              Propiedades Disponibles
+            </h1>
           <p className="text-lg text-secondary max-w-2xl mx-auto">
             Explora nuestro catálogo completo con búsqueda avanzada, filtros y recomendaciones inteligentes
           </p>

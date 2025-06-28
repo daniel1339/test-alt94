@@ -93,9 +93,9 @@ export function PropertyDetail({ property, className = '' }: PropertyDetailProps
                   💡 <strong>Próximamente:</strong> Sistema de contacto
                 </div>
                 <Button variant="outline" size="lg" className="w-full" disabled>
-                  <HiCurrencyDollar className="w-4 h-4 mr-2" />
+                <HiCurrencyDollar className="w-4 h-4 mr-2" />
                   Consultar (Próximamente)
-                </Button>
+              </Button>
               </div>
             </div>
           </Card>

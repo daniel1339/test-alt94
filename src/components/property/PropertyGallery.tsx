@@ -60,15 +60,15 @@ export function PropertyGallery({ images, title, className = '' }: PropertyGalle
 
         {/* Imagen principal */}
         {!imageError && (
-          <Image
-            src={images[currentIndex]}
-            alt={`${title} - Imagen ${currentIndex + 1}`}
-            fill
+        <Image
+          src={images[currentIndex]}
+          alt={`${title} - Imagen ${currentIndex + 1}`}
+          fill
             className={`object-cover transition-all duration-300 ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
             }`}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            priority
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority
             onLoad={() => setImageLoaded(true)}
             onError={() => setImageError(true)}
           />

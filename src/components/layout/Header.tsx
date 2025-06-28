@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { HiHome } from 'react-icons/hi';
 import { FavoritesCounter, MobileMenu } from '@/components/ui';
 
 export function Header() {
@@ -17,9 +18,9 @@ export function Header() {
           {/* Logo y navegación principal */}
           <div className="flex items-center space-x-8">
             <Link href="/" className="flex items-center group">
-              <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold bg-primary-600">
-                  P
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white bg-gradient-to-br from-blue-600 to-blue-700 shadow-lg">
+                  <HiHome className="w-5 h-5" />
                 </div>
                 <h1 className="text-xl font-bold transition-colors group-hover:text-primary-700 text-primary">
                   PropiedadesApp
