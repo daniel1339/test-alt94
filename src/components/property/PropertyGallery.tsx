@@ -22,7 +22,7 @@ export function PropertyGallery({ images, title, className = '' }: PropertyGalle
         <div className="text-center">
           <HiPhotograph className="w-12 h-12 mx-auto mb-2 text-muted" />
           <p className="text-sm text-muted">
-            Sin imágenes disponibles
+            Sin imagen
           </p>
         </div>
       </div>
@@ -79,7 +79,7 @@ export function PropertyGallery({ images, title, className = '' }: PropertyGalle
           <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
             <div className="text-center text-gray-400">
               <HiPhotograph className="w-12 h-12 mx-auto mb-2" />
-              <span className="text-sm">Error al cargar imagen</span>
+              <span className="text-sm">Sin imagen</span>
             </div>
           </div>
         )}

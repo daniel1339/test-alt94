@@ -26,8 +26,8 @@ export default function HomePage() {
               <span className="text-primary-600">Perfecta</span>
             </h1>
             <p className="text-xl max-w-3xl mx-auto text-secondary">
-              Sistema inteligente de recomendación que encuentra propiedades similares 
-              basándose en ubicación, tipo, precio y características específicas.
+              Encuentra propiedades similares comparando ubicación, tipo, precio y número de habitaciones 
+              para ayudarte a descubrir opciones que se adapten a lo que buscas.
             </p>
           </div>
           
@@ -66,10 +66,10 @@ export default function HomePage() {
               <HiStar className="w-8 h-8 text-success-600" />
             </div>
             <h3 className="text-xl font-semibold text-primary">
-              Recomendaciones IA
+              Recomendaciones Inteligentes
             </h3>
             <p className="text-secondary">
-              Algoritmo inteligente que encuentra propiedades similares según tus preferencias.
+              Sistema de similitud que encuentra propiedades parecidas según ubicación, tipo y precio.
             </p>
           </div>
 
@@ -90,10 +90,10 @@ export default function HomePage() {
               <HiSearch className="w-8 h-8 text-info-600" />
             </div>
             <h3 className="text-xl font-semibold text-primary">
-              Búsqueda Avanzada
+              Navegación Fácil
             </h3>
             <p className="text-secondary">
-              Filtra por ciudad, tipo, precio, ambientes y superficie para encontrar exactamente lo que buscas.
+              Explora propiedades por ciudad, visualiza detalles completos y encuentra lo que necesitas rápidamente.
             </p>
           </div>
 
@@ -102,10 +102,10 @@ export default function HomePage() {
               <HiChartBar className="w-8 h-8 text-error-600" />
             </div>
             <h3 className="text-xl font-semibold text-primary">
-              Análisis de Mercado
+              Información Completa
             </h3>
             <p className="text-secondary">
-              Estadísticas y métricas detalladas para ayudarte a tomar la mejor decisión.
+              Datos detallados de cada propiedad incluyendo precio, ubicación, tipo y características principales.
             </p>
           </div>
 
@@ -147,8 +147,8 @@ export default function HomePage() {
               <div className="text-sm text-secondary">Tipos</div>
             </div>
             <div className="stat-card bg-surface">
-              <div className="text-3xl font-bold text-info-600">AI</div>
-              <div className="text-sm text-secondary">Powered</div>
+              <div className="text-3xl font-bold text-info-600">95%</div>
+              <div className="text-sm text-secondary">Precisión</div>
             </div>
           </div>
         </section>

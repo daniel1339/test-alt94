@@ -27,7 +27,7 @@ export async function GET(
       `Property ${idValidation.propertyId} retrieved successfully`
     );
 
-  } catch (error) {
+  } catch {
     return ApiErrors.internalError('Error fetching property details');
   }
 } 

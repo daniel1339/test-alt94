@@ -2,7 +2,7 @@
 
 import { Property } from '@/types/property';
 import { PropertyGallery } from './PropertyGallery';
-import { Card, Button } from '@/components/ui';
+import { Card, Button, FavoriteButton } from '@/components/ui';
 import { formatPrice, formatPricePerM2, formatPricePerRoom, formatArea, formatRooms } from '@/utils/format';
 import Link from 'next/link';
 import { 
@@ -10,8 +10,6 @@ import {
   HiLocationMarker, 
   HiViewGrid, 
   HiCurrencyDollar,
-  HiHeart,
-  HiShare,
   HiStar
 } from 'react-icons/hi';
 
@@ -44,19 +42,23 @@ export function PropertyDetail({ property, className = '' }: PropertyDetailProps
           </div>
           
           {/* Acciones */}
-          <div className="flex space-x-3">
-            <Button variant="ghost" size="md">
-              <HiShare className="w-4 h-4 mr-2" />
-              Compartir
-            </Button>
-            <Button variant="outline" size="md">
-              <HiHeart className="w-4 h-4 mr-2" />
-              Favorito
-            </Button>
+          <div className="flex flex-wrap gap-3">
             <Link href={`/recommendations/${property.id}`}>
               <Button variant="primary" size="md">
                 <HiStar className="w-4 h-4 mr-2" />
                 Ver Similares
+              </Button>
+            </Link>
+            <FavoriteButton 
+              property={property}
+              variant="button"
+              size="md"
+              showText={true}
+            />
+            <Link href="/properties">
+              <Button variant="outline" size="md">
+                <HiViewGrid className="w-4 h-4 mr-2" />
+                Explorar Más
               </Button>
             </Link>
           </div>
@@ -86,10 +88,15 @@ export function PropertyDetail({ property, className = '' }: PropertyDetailProps
               <div className="text-sm text-secondary">
                 {formatPricePerM2(property.precio, property.metros_cuadrados)} por m²
               </div>
-              <Button variant="primary" size="lg" className="w-full">
-                <HiCurrencyDollar className="w-4 h-4 mr-2" />
-                Consultar
-              </Button>
+              <div className="space-y-2">
+                <div className="text-xs text-muted text-center">
+                  💡 <strong>Próximamente:</strong> Sistema de contacto
+                </div>
+                <Button variant="outline" size="lg" className="w-full" disabled>
+                  <HiCurrencyDollar className="w-4 h-4 mr-2" />
+                  Consultar (Próximamente)
+                </Button>
+              </div>
             </div>
           </Card>
 

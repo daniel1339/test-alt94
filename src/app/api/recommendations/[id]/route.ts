@@ -47,7 +47,7 @@ export async function GET(
       { total: similarProperties.length }
     );
 
-  } catch (error) {
+  } catch {
     return ApiErrors.internalError('Error generating recommendations');
   }
 } 

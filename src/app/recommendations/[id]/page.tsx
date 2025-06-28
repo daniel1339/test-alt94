@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { MainLayout } from '@/components/layout';
 import { RecommendationsList } from '@/components/property';
-import { Breadcrumb, Card, Button } from '@/components/ui';
+import { Breadcrumb, Card } from '@/components/ui';
 import { getPropertySSR, getRecommendationsSSR } from '@/lib/ssr/property';
 import { createRecommendationsBreadcrumb } from '@/utils/breadcrumb';
 import { formatPrice } from '@/utils/format';
@@ -100,7 +100,7 @@ export default async function RecommendationsPage({ params }: PageProps) {
               <div className="flex items-center space-x-2">
                 <HiSparkles className="w-5 h-5 text-primary-600" />
                 <span className="text-sm font-medium text-primary-700">
-                  Recomendaciones IA
+                  Recomendaciones Inteligentes
                 </span>
               </div>
             </div>
@@ -115,7 +115,7 @@ export default async function RecommendationsPage({ params }: PageProps) {
                   ¿Cómo funciona nuestro algoritmo?
                 </h3>
                 <p className="text-xs text-info-600 leading-relaxed">
-                  Utilizamos inteligencia artificial para encontrar propiedades similares basándose en: 
+                  Utilizamos un algoritmo de similitud para encontrar propiedades parecidas comparando: 
                   <strong> ubicación (40%)</strong>, <strong>tipo de propiedad (30%)</strong>, 
                   <strong> rango de precio (20%)</strong> y <strong>cantidad de ambientes (10%)</strong>.
                 </p>

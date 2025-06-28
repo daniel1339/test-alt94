@@ -22,50 +22,51 @@ export function Button({
     'font-medium transition-all',
     'focus:outline-none focus:ring-2 focus:ring-offset-2',
     'disabled:opacity-50 disabled:cursor-not-allowed',
-    'border border-transparent'
+    'border border-transparent',
+    'cursor-pointer'
   ].join(' ');
   
   const variants = {
     primary: [
-      'bg-primary-600 text-white',
-      'hover:bg-primary-700 focus:ring-primary-500',
-      'active:bg-primary-800'
+      'text-white',
+      'hover:opacity-90 focus:ring-2 focus:ring-offset-2',
+      'active:opacity-95'
     ].join(' '),
     
     secondary: [
-      'bg-gray-600 text-white',
-      'hover:bg-gray-700 focus:ring-gray-500',
-      'active:bg-gray-800'
+      'text-white',
+      'hover:opacity-90 focus:ring-2 focus:ring-offset-2',
+      'active:opacity-95'
     ].join(' '),
     
     outline: [
-      'border-gray-300 bg-white text-gray-700',
-      'hover:bg-gray-50 focus:ring-primary-500',
+      'bg-white text-gray-700',
+      'hover:bg-gray-50 focus:ring-2 focus:ring-offset-2',
       'active:bg-gray-100'
     ].join(' '),
     
     ghost: [
       'text-gray-700 bg-transparent',
-      'hover:bg-gray-100 focus:ring-gray-500',
+      'hover:bg-gray-100 focus:ring-2 focus:ring-offset-2',
       'active:bg-gray-200'
     ].join(' '),
     
     success: [
-      'bg-success-600 text-white',
-      'hover:bg-success-700 focus:ring-success-500',
-      'active:bg-success-800'
+      'text-white',
+      'hover:opacity-90 focus:ring-2 focus:ring-offset-2',
+      'active:opacity-95'
     ].join(' '),
     
     warning: [
-      'bg-warning-600 text-white',
-      'hover:bg-warning-700 focus:ring-warning-500',
-      'active:bg-warning-800'
+      'text-white',
+      'hover:opacity-90 focus:ring-2 focus:ring-offset-2',
+      'active:opacity-95'
     ].join(' '),
     
     error: [
-      'bg-error-600 text-white',
-      'hover:bg-error-700 focus:ring-error-500',
-      'active:bg-error-800'
+      'text-white',
+      'hover:opacity-90 focus:ring-2 focus:ring-offset-2',
+      'active:opacity-95'
     ].join(' ')
   };
 
@@ -73,6 +74,59 @@ export function Button({
     sm: 'px-3 py-1.5 text-sm rounded-md',
     md: 'px-4 py-2 text-sm rounded-lg',
     lg: 'px-6 py-3 text-base rounded-lg'
+  };
+
+  const getVariantStyle = (variant: string) => {
+    switch (variant) {
+      case 'primary':
+        return {
+          backgroundColor: 'var(--color-primary-600)',
+          color: 'white',
+          borderColor: 'var(--color-primary-600)'
+        };
+      case 'secondary':
+        return {
+          backgroundColor: 'var(--color-gray-600)',
+          color: 'white',
+          borderColor: 'var(--color-gray-600)'
+        };
+      case 'outline':
+        return {
+          backgroundColor: 'white',
+          color: 'var(--color-gray-700)',
+          borderColor: 'var(--color-gray-300)'
+        };
+      case 'ghost':
+        return {
+          backgroundColor: 'transparent',
+          color: 'var(--color-gray-700)',
+          borderColor: 'transparent'
+        };
+      case 'success':
+        return {
+          backgroundColor: 'var(--color-success-600)',
+          color: 'white',
+          borderColor: 'var(--color-success-600)'
+        };
+      case 'warning':
+        return {
+          backgroundColor: 'var(--color-warning-600)',
+          color: 'white',
+          borderColor: 'var(--color-warning-600)'
+        };
+      case 'error':
+        return {
+          backgroundColor: 'var(--color-error-600)',
+          color: 'white',
+          borderColor: 'var(--color-error-600)'
+        };
+      default:
+        return {
+          backgroundColor: 'var(--color-primary-600)',
+          color: 'white',
+          borderColor: 'var(--color-primary-600)'
+        };
+    }
   };
 
   return (
@@ -86,6 +140,7 @@ export function Button({
       )}
       disabled={disabled || loading}
       style={{
+        ...getVariantStyle(variant),
         transition: 'all var(--transition-normal)'
       }}
       {...props}

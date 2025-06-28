@@ -57,10 +57,10 @@ export default async function PropertiesPage() {
           <div className="stat-card bg-info-50">
             <div className="text-2xl font-bold flex items-center justify-center space-x-2 text-info-600">
               <HiSparkles className="w-6 h-6" />
-              <span>AI</span>
+              <span>95%</span>
             </div>
             <div className="text-sm text-secondary">
-              Recomendaciones IA
+              Precisión recomendaciones
             </div>
           </div>
         </div>

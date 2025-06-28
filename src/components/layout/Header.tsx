@@ -1,6 +1,5 @@
 import Link from 'next/link';
-import { Button, FavoritesCounter, SearchInput } from '@/components/ui';
-import { HiMenu } from 'react-icons/hi';
+import { Button, FavoritesCounter, MobileMenu } from '@/components/ui';
 
 export function Header() {
   return (
@@ -42,22 +41,10 @@ export function Header() {
 
           {/* Acciones del header */}
           <div className="flex items-center space-x-4">
-            <Button variant="outline" size="sm">
-              Filtros
-            </Button>
             
-            {/* Contador de favoritos móvil */}
-            <div className="md:hidden">
-              <FavoritesCounter />
-            </div>
             
-            {/* Menú móvil (placeholder) */}
-            <button 
-              className="md:hidden p-2 rounded-md focus-ring text-secondary"
-              aria-label="Menú principal"
-            >
-              <HiMenu className="w-5 h-5" />
-            </button>
+            {/* Menú móvil interactivo */}
+            <MobileMenu />
           </div>
         </div>
       </div>

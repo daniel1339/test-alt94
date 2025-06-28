@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { Property } from '@/types/property';
 import { FilterState } from '@/components/ui/FilterSidebar';
 
@@ -65,6 +65,7 @@ export function useSearchAndFilters({
   });
 
   const [loading, setLoading] = useState(false);
+  const isInitialMount = useRef(true);
 
   // Datos estáticos extraídos de propiedades
   const { availableCities, availableTypes, priceRange } = useMemo(() => {
@@ -84,8 +85,6 @@ export function useSearchAndFilters({
 
   // Función de filtrado y búsqueda
   const filteredProperties = useMemo(() => {
-    setLoading(true);
-    
     let filtered = [...properties];
 
     // Filtro por búsqueda de texto
@@ -147,7 +146,6 @@ export function useSearchAndFilters({
       }
     });
 
-    setTimeout(() => setLoading(false), 100); // Simular delay mínimo
     return filtered;
   }, [properties, state.searchQuery, state.filters, state.sortBy]);
 
@@ -167,6 +165,21 @@ export function useSearchAndFilters({
   // Reset página cuando cambian filtros o búsqueda
   useEffect(() => {
     setState(prev => ({ ...prev, currentPage: 1 }));
+  }, [state.searchQuery, state.filters, state.sortBy]);
+
+  // Manejar loading state
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
+
+    setLoading(true);
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 300); // Delay para mostrar animación de carga
+
+    return () => clearTimeout(timer);
   }, [state.searchQuery, state.filters, state.sortBy]);
 
   // Verificar si hay filtros activos

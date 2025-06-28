@@ -31,7 +31,7 @@ export async function GET(request: NextRequest) {
     if ('error' in paginationValidation) return paginationValidation.error;
 
     // Build filters object
-    const filters: any = {};
+    const filters: Record<string, string | number> = {};
     if (ciudad) filters.ciudad = ciudad;
     if (tipoValidation.tipo) filters.tipo = tipoValidation.tipo;
     if (priceValidation.minPrice !== null && priceValidation.maxPrice !== null) {
@@ -52,7 +52,7 @@ export async function GET(request: NextRequest) {
       { pagination: result.pagination }
     );
 
-  } catch (error) {
+  } catch {
     return ApiErrors.internalError('Error fetching properties');
   }
 } 
