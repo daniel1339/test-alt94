@@ -34,13 +34,13 @@ export function PropertyCard({
 
   return (
     <div className="h-full cursor-pointer" onClick={handleCardClick}>
-      <Card 
-        hover 
-        padding="none" 
-        shadow="md" 
+    <Card 
+      hover 
+      padding="none" 
+      shadow="md" 
         className={`h-full flex flex-col ${className}`}
-        as="article"
-      >
+      as="article"
+    >
         {/* Imagen de la propiedad - altura fija */}
         <div className="relative h-48 w-full overflow-hidden rounded-t-xl bg-gray-200 flex-shrink-0">
           {/* Skeleton mientras carga la imagen */}
@@ -52,14 +52,14 @@ export function PropertyCard({
           
           {/* Imagen principal */}
           {!imageError && (
-            <Image
-              src={property.imagen}
-              alt={property.titulo}
-              fill
+        <Image
+          src={property.imagen}
+          alt={property.titulo}
+          fill
               className={`object-cover transition-all duration-300 hover:scale-105 ${
                 imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               onLoad={() => setImageLoaded(true)}
               onError={() => setImageError(true)}
             />
@@ -79,18 +79,18 @@ export function PropertyCard({
           <div className={`absolute top-3 left-3 right-3 flex justify-between items-start gap-2 transition-opacity duration-300 ${
             imageLoaded || imageError ? 'opacity-100' : 'opacity-0'
           }`}>
-            {/* Badge del tipo */}
+        {/* Badge del tipo */}
             <div className="badge-type flex-shrink-0 shadow-sm">
-              <HiHome className="w-3 h-3" />
+          <HiHome className="w-3 h-3" />
               <span className="truncate max-w-20">{property.tipo}</span>
-            </div>
-
-            {/* Badge de precio */}
-            <div className="px-2 py-1 rounded-md text-xs font-bold bg-black/80 text-white flex-shrink-0 shadow-lg backdrop-blur-sm">
-              {formatPrice(property.precio)}
-            </div>
-          </div>
         </div>
+
+        {/* Badge de precio */}
+            <div className="px-2 py-1 rounded-md text-xs font-bold bg-black/80 text-white flex-shrink-0 shadow-lg backdrop-blur-sm">
+          {formatPrice(property.precio)}
+            </div>
+        </div>
+      </div>
 
         {/* Contenido de la tarjeta - flex-grow para ocupar espacio restante */}
         <div className="p-4 flex flex-col flex-grow">
@@ -100,58 +100,58 @@ export function PropertyCard({
               className="font-semibold text-lg leading-tight mb-1 text-primary truncate" 
               title={property.titulo}
             >
-              {property.titulo}
-            </h3>
+            {property.titulo}
+          </h3>
             <p 
               className="text-sm flex items-center text-secondary truncate" 
               title={property.ciudad}
             >
               <HiLocationMarker className="w-4 h-4 mr-1 flex-shrink-0" />
               <span className="truncate">{property.ciudad}</span>
-            </p>
-          </div>
+          </p>
+        </div>
 
           {/* Características - altura fija */}
           <div className="flex items-center justify-between text-sm mb-3 flex-shrink-0">
-            <div className="flex items-center text-muted">
-              <HiHome className="w-4 h-4 mr-1" />
+          <div className="flex items-center text-muted">
+            <HiHome className="w-4 h-4 mr-1" />
               <span>{formatRooms(property.ambientes)}</span>
-            </div>
-            
-            <div className="flex items-center text-muted">
-              <HiViewGrid className="w-4 h-4 mr-1" />
-              <span>{formatArea(property.metros_cuadrados)}</span>
-            </div>
           </div>
+          
+          <div className="flex items-center text-muted">
+            <HiViewGrid className="w-4 h-4 mr-1" />
+              <span>{formatArea(property.metros_cuadrados)}</span>
+          </div>
+        </div>
 
           {/* Precio destacado - altura fija */}
           <div className="mb-4 flex-shrink-0">
             <div className="price-display truncate" title={formatPrice(property.precio)}>
-              {formatPrice(property.precio)}
-            </div>
+          {formatPrice(property.precio)}
+        </div>
           </div>
 
           {/* Acciones - pegadas al bottom con margin-top auto */}
           <div className="flex space-x-2 mt-auto" onClick={handleActionClick}>
-            {showRecommendations && (
+          {showRecommendations && (
               <Link href={`/recommendations/${property.id}`} className="flex-shrink-0">
-                <Button variant="outline" size="sm">
-                  Similares
-                </Button>
-              </Link>
-            )}
-            
+              <Button variant="outline" size="sm">
+                Similares
+              </Button>
+            </Link>
+          )}
+          
             {/* Botón de favoritos */}
             <div className="flex-shrink-0 ml-auto">
               <FavoriteButton 
                 property={property}
                 variant="icon"
-                size="sm"
+            size="sm"
               />
             </div>
           </div>
         </div>
       </Card>
-    </div>
+      </div>
   );
 } 
