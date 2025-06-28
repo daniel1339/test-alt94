@@ -1,5 +1,15 @@
+import Link from 'next/link';
 import { MainLayout } from '@/components/layout';
 import { Card, Button } from '@/components/ui';
+import { 
+  HiHome, 
+  HiStar, 
+  HiHeart, 
+  HiSearchCircle, 
+  HiChartBar, 
+  HiShieldCheck, 
+  HiDeviceMobile 
+} from 'react-icons/hi';
 
 export default function Home() {
   return (
@@ -33,12 +43,16 @@ export default function Home() {
 
           {/* CTA Principal */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="primary" size="lg">
-              Explorar Propiedades
-            </Button>
-            <Button variant="outline" size="lg">
-              Ver Recomendaciones
-            </Button>
+            <Link href="/properties">
+              <Button variant="primary" size="lg">
+                Explorar Propiedades
+              </Button>
+            </Link>
+            <Link href="/properties">
+              <Button variant="outline" size="lg">
+                Ver Recomendaciones
+              </Button>
+            </Link>
           </div>
         </div>
 
@@ -47,10 +61,10 @@ export default function Home() {
           <Card hover padding="lg" shadow="md">
             <div className="text-center space-y-4">
               <div 
-                className="w-12 h-12 mx-auto rounded-lg flex items-center justify-center text-2xl"
+                className="w-12 h-12 mx-auto rounded-lg flex items-center justify-center"
                 style={{ backgroundColor: 'var(--color-primary-100)', color: 'var(--color-primary-600)' }}
               >
-                🏠
+                <HiHome className="w-6 h-6" />
               </div>
               <h3 
                 className="text-lg font-semibold"
@@ -64,19 +78,21 @@ export default function Home() {
               >
                 Explora todas las propiedades disponibles con filtros avanzados por ciudad, tipo y rango de precio.
               </p>
-              <Button variant="primary" size="sm" className="w-full">
-                Ver Propiedades
-              </Button>
+              <Link href="/properties">
+                <Button variant="primary" size="sm" className="w-full">
+                  Ver Propiedades
+                </Button>
+              </Link>
             </div>
           </Card>
 
           <Card hover padding="lg" shadow="md">
             <div className="text-center space-y-4">
               <div 
-                className="w-12 h-12 mx-auto rounded-lg flex items-center justify-center text-2xl"
+                className="w-12 h-12 mx-auto rounded-lg flex items-center justify-center"
                 style={{ backgroundColor: 'var(--color-success-100)', color: 'var(--color-success-600)' }}
               >
-                ⭐
+                <HiStar className="w-6 h-6" />
               </div>
               <h3 
                 className="text-lg font-semibold"
@@ -90,19 +106,21 @@ export default function Home() {
               >
                 Algoritmo que encuentra propiedades similares basado en múltiples características y preferencias.
               </p>
-              <Button variant="success" size="sm" className="w-full">
-                Ver Recomendaciones
-              </Button>
+              <Link href="/properties">
+                <Button variant="success" size="sm" className="w-full">
+                  Ver Recomendaciones
+                </Button>
+              </Link>
             </div>
           </Card>
 
           <Card hover padding="lg" shadow="md">
             <div className="text-center space-y-4">
               <div 
-                className="w-12 h-12 mx-auto rounded-lg flex items-center justify-center text-2xl"
+                className="w-12 h-12 mx-auto rounded-lg flex items-center justify-center"
                 style={{ backgroundColor: 'var(--color-warning-100)', color: 'var(--color-warning-600)' }}
               >
-                ❤️
+                <HiHeart className="w-6 h-6" />
               </div>
               <h3 
                 className="text-lg font-semibold"
@@ -116,9 +134,11 @@ export default function Home() {
               >
                 Guarda tus propiedades favoritas para acceder fácilmente y comparar opciones.
               </p>
-              <Button variant="outline" size="sm" className="w-full">
-                Mis Favoritos
-              </Button>
+              <Link href="/favorites">
+                <Button variant="outline" size="sm" className="w-full">
+                  Mis Favoritos
+                </Button>
+              </Link>
             </div>
           </Card>
         </div>
@@ -149,10 +169,10 @@ export default function Home() {
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <div 
-                    className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium"
+                    className="w-8 h-8 rounded-full flex items-center justify-center"
                     style={{ backgroundColor: 'var(--color-primary-600)', color: 'white' }}
                   >
-                    🔍
+                    <HiSearchCircle className="w-5 h-5" />
                   </div>
                   <h4 
                     className="font-semibold"
@@ -172,10 +192,10 @@ export default function Home() {
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <div 
-                    className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium"
+                    className="w-8 h-8 rounded-full flex items-center justify-center"
                     style={{ backgroundColor: 'var(--color-success-600)', color: 'white' }}
                   >
-                    📊
+                    <HiChartBar className="w-5 h-5" />
                   </div>
                   <h4 
                     className="font-semibold"
@@ -195,10 +215,10 @@ export default function Home() {
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <div 
-                    className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium"
+                    className="w-8 h-8 rounded-full flex items-center justify-center"
                     style={{ backgroundColor: 'var(--color-info-600)', color: 'white' }}
                   >
-                    🛡️
+                    <HiShieldCheck className="w-5 h-5" />
                   </div>
                   <h4 
                     className="font-semibold"
@@ -218,10 +238,10 @@ export default function Home() {
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <div 
-                    className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium"
+                    className="w-8 h-8 rounded-full flex items-center justify-center"
                     style={{ backgroundColor: 'var(--color-warning-600)', color: 'white' }}
                   >
-                    📱
+                    <HiDeviceMobile className="w-5 h-5" />
                   </div>
                   <h4 
                     className="font-semibold"

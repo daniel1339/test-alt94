@@ -1,3 +1,4 @@
 export { Button } from './Button';
 export { Card } from './Card';
-export { LoadingSpinner, LoadingCard, LoadingPage, TextSkeleton } from './Loading'; 
+export { LoadingSpinner, LoadingCard, LoadingPage, TextSkeleton } from './Loading';
+export { Breadcrumb } from './Breadcrumb'; 

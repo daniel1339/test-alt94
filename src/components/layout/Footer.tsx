@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export function Footer() {
   return (
     <footer 
@@ -28,27 +30,27 @@ export function Footer() {
 
           {/* Links útiles */}
           <div className="flex justify-center space-x-6 text-sm">
-            <a 
+            <Link 
               href="/"
               className="text-muted hover:text-primary transition-colors focus-ring rounded px-2 py-1"
               style={{ transition: 'color var(--transition-fast)' }}
             >
               Inicio
-            </a>
-            <a 
+            </Link>
+            <Link 
               href="/properties"
               className="text-muted hover:text-primary transition-colors focus-ring rounded px-2 py-1"
               style={{ transition: 'color var(--transition-fast)' }}
             >
               Propiedades
-            </a>
-            <a 
+            </Link>
+            <Link 
               href="/favorites"
               className="text-muted hover:text-primary transition-colors focus-ring rounded px-2 py-1"
               style={{ transition: 'color var(--transition-fast)' }}
             >
               Favoritos
-            </a>
+            </Link>
           </div>
 
           {/* Copyright y atribución */}
@@ -60,7 +62,7 @@ export function Footer() {
               className="text-xs"
               style={{ color: 'var(--color-text-muted)' }}
             >
-              © 2024 PropiedadesApp. Desarrollado para <span className="font-medium">Alt94</span> - Prueba Técnica
+              © 2025 PropiedadesApp. Desarrollado para <span className="font-medium">Alt94</span> - Prueba Técnica
             </p>
             <p 
               className="text-xs mt-1"

@@ -2,6 +2,7 @@
 
 import { Component, ReactNode, ErrorInfo } from 'react';
 import { Button } from '@/components/ui';
+import { HiExclamationCircle } from 'react-icons/hi';
 
 interface Props {
   children: ReactNode;
@@ -31,7 +32,10 @@ export class ErrorBoundary extends Component<Props, State> {
       return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50">
           <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-6 text-center">
-            <div className="text-red-500 text-6xl mb-4">⚠️</div>
+            <HiExclamationCircle 
+              className="mx-auto text-6xl mb-4"
+              style={{ color: 'var(--color-error-500)' }}
+            />
             <h2 className="text-xl font-bold text-gray-900 mb-2">
               Algo salió mal
             </h2>

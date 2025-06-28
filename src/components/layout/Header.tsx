@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui';
+import { HiMenu } from 'react-icons/hi';
 
 export function Header() {
   return (
@@ -35,7 +36,7 @@ export function Header() {
             
             <nav className="hidden md:flex space-x-6">
               <Link 
-                href="/" 
+                href="/properties" 
                 className="text-secondary hover:text-primary transition-colors focus-ring rounded-md px-2 py-1"
                 style={{ transition: 'color var(--transition-fast)' }}
               >
@@ -63,9 +64,7 @@ export function Header() {
               style={{ color: 'var(--color-text-secondary)' }}
               aria-label="Menú principal"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+              <HiMenu className="w-5 h-5" />
             </button>
           </div>
         </div>

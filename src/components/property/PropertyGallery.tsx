@@ -1,0 +1,115 @@
+import Image from 'next/image';
+import { useState } from 'react';
+import { HiChevronLeft, HiChevronRight, HiPhotograph } from 'react-icons/hi';
+
+interface PropertyGalleryProps {
+  images: string[];
+  title: string;
+  className?: string;
+}
+
+export function PropertyGallery({ images, title, className = '' }: PropertyGalleryProps) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
+  // Si no hay imágenes, mostrar placeholder
+  if (!images || images.length === 0) {
+    return (
+      <div 
+        className={`aspect-video bg-gray-100 rounded-xl flex items-center justify-center ${className}`}
+        style={{ backgroundColor: 'var(--color-surface-secondary)' }}
+      >
+        <div className="text-center">
+          <HiPhotograph 
+            className="w-12 h-12 mx-auto mb-2"
+            style={{ color: 'var(--color-text-muted)' }}
+          />
+          <p 
+            className="text-sm"
+            style={{ color: 'var(--color-text-muted)' }}
+          >
+            Sin imágenes disponibles
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  const goToPrevious = () => {
+    setCurrentIndex(prev => prev === 0 ? images.length - 1 : prev - 1);
+  };
+
+  const goToNext = () => {
+    setCurrentIndex(prev => prev === images.length - 1 ? 0 : prev + 1);
+  };
+
+  return (
+    <div className={`space-y-4 ${className}`}>
+      {/* Imagen principal */}
+      <div className="relative aspect-video rounded-xl overflow-hidden group">
+        <Image
+          src={images[currentIndex]}
+          alt={`${title} - Imagen ${currentIndex + 1}`}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority
+        />
+        
+        {/* Controles de navegación */}
+        {images.length > 1 && (
+          <>
+            {/* Botón anterior */}
+            <button
+              onClick={goToPrevious}
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
+              aria-label="Imagen anterior"
+            >
+              <HiChevronLeft className="w-5 h-5 text-white" />
+            </button>
+            
+            {/* Botón siguiente */}
+            <button
+              onClick={goToNext}
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
+              aria-label="Imagen siguiente"
+            >
+              <HiChevronRight className="w-5 h-5 text-white" />
+            </button>
+            
+            {/* Indicador de posición */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-3 py-1 bg-black/50 rounded-full">
+              <span className="text-white text-sm font-medium">
+                {currentIndex + 1} / {images.length}
+              </span>
+            </div>
+          </>
+        )}
+      </div>
+      
+      {/* Thumbnails */}
+      {images.length > 1 && (
+        <div className="flex space-x-2 overflow-x-auto pb-2">
+          {images.map((image, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`relative flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
+                index === currentIndex 
+                  ? 'border-primary-500 ring-2 ring-primary-200' 
+                  : 'border-transparent hover:border-gray-300'
+              }`}
+            >
+              <Image
+                src={image}
+                alt={`${title} - Thumbnail ${index + 1}`}
+                fill
+                className="object-cover"
+                sizes="80px"
+              />
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+} 
