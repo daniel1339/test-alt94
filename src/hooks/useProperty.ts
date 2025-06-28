@@ -29,8 +29,7 @@ export function useProperty(id: string): UsePropertyResult {
       setLoading(true);
       setError(null);
 
-      const baseUrl = process.env.API_BASE_URL || 'http://localhost:3000';
-      const response = await fetch(`${baseUrl}/api/properties/${id}`, {
+      const response = await fetch(`/api/properties/${id}`, {
         cache: 'no-store'
       });
 
@@ -76,7 +75,7 @@ export function useProperty(id: string): UsePropertyResult {
  */
 export async function getPropertySSR(id: string): Promise<Property | null> {
   try {
-    const baseUrl = process.env.API_BASE_URL || 'http://localhost:3000';
+    const baseUrl = process.env.NEXTAUTH_URL || process.env.VERCEL_URL || 'http://localhost:3000';
     const response = await fetch(`${baseUrl}/api/properties/${id}`, {
       cache: 'no-store'
     });

@@ -10,6 +10,8 @@ interface PropertyGalleryProps {
 
 export function PropertyGallery({ images, title, className = '' }: PropertyGalleryProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
   
   // Si no hay imágenes, mostrar placeholder
   if (!images || images.length === 0) {
@@ -27,27 +29,61 @@ export function PropertyGallery({ images, title, className = '' }: PropertyGalle
 
   const goToPrevious = () => {
     setCurrentIndex(prev => prev === 0 ? images.length - 1 : prev - 1);
+    setImageLoaded(false); // Reset loading state when changing image
+    setImageError(false);
   };
 
   const goToNext = () => {
     setCurrentIndex(prev => prev === images.length - 1 ? 0 : prev + 1);
+    setImageLoaded(false); // Reset loading state when changing image
+    setImageError(false);
+  };
+
+  const handleThumbnailClick = (index: number) => {
+    setCurrentIndex(index);
+    setImageLoaded(false); // Reset loading state when changing image
+    setImageError(false);
   };
 
   return (
     <div className={`space-y-4 ${className}`}>
       {/* Imagen principal */}
-      <div className="relative aspect-video rounded-xl overflow-hidden group">
-        <Image
-          src={images[currentIndex]}
-          alt={`${title} - Imagen ${currentIndex + 1}`}
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          priority
-        />
+      <div className="relative aspect-video rounded-xl overflow-hidden group bg-gray-200">
+        {/* Skeleton mientras carga la imagen */}
+        {!imageLoaded && !imageError && (
+          <div className="absolute inset-0 bg-gray-200 animate-pulse">
+            <div className="h-full w-full bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse"></div>
+          </div>
+        )}
+
+        {/* Imagen principal */}
+        {!imageError && (
+          <Image
+            src={images[currentIndex]}
+            alt={`${title} - Imagen ${currentIndex + 1}`}
+            fill
+            className={`object-cover transition-all duration-300 ${
+              imageLoaded ? 'opacity-100' : 'opacity-0'
+            }`}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            priority
+            onLoad={() => setImageLoaded(true)}
+            onError={() => setImageError(true)}
+          />
+        )}
+
+        {/* Fallback si la imagen falla */}
+        {imageError && (
+          <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
+            <div className="text-center text-gray-400">
+              <HiPhotograph className="w-12 h-12 mx-auto mb-2" />
+              <span className="text-sm">Error al cargar imagen</span>
+            </div>
+          </div>
+        )}
         
-        {/* Controles de navegación */}
-        {images.length > 1 && (
+        {/* Controles de navegación - solo visible cuando hay múltiples imágenes y la imagen está cargada */}
+        {images.length > 1 && (imageLoaded || imageError) && (
           <>
             {/* Botón anterior */}
             <button
@@ -83,7 +119,7 @@ export function PropertyGallery({ images, title, className = '' }: PropertyGalle
           {images.map((image, index) => (
             <button
               key={index}
-              onClick={() => setCurrentIndex(index)}
+              onClick={() => handleThumbnailClick(index)}
               className={`relative flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
                 index === currentIndex 
                   ? 'border-primary-500 ring-2 ring-primary-200' 

@@ -32,8 +32,7 @@ export function useRecommendations(propertyId: string): UseRecommendationsResult
       setLoading(true);
       setError(null);
 
-      const baseUrl = process.env.API_BASE_URL || 'http://localhost:3000';
-      const response = await fetch(`${baseUrl}/api/recommendations/${propertyId}`, {
+      const response = await fetch(`/api/recommendations/${propertyId}`, {
         cache: 'no-store'
       });
 
@@ -79,7 +78,7 @@ export function useRecommendations(propertyId: string): UseRecommendationsResult
  */
 export async function getRecommendationsSSR(propertyId: string): Promise<PropertyWithScore[]> {
   try {
-    const baseUrl = process.env.API_BASE_URL || 'http://localhost:3000';
+    const baseUrl = process.env.NEXTAUTH_URL || process.env.VERCEL_URL || 'http://localhost:3000';
     const response = await fetch(`${baseUrl}/api/recommendations/${propertyId}`, {
       cache: 'no-store'
     });

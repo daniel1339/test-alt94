@@ -53,8 +53,7 @@ export function useProperties(options: UsePropertiesOptions = {}): UseProperties
       setLoading(true);
       setError(null);
       
-      const baseUrl = process.env.API_BASE_URL || 'http://localhost:3000';
-      const response = await fetch(`${baseUrl}/api/properties?page=${page}&limit=${limit}`);
+      const response = await fetch(`/api/properties?page=${page}&limit=${limit}`);
       
       if (!response.ok) {
         throw new Error(`Error ${response.status}: ${response.statusText}`);
