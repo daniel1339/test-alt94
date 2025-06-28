@@ -75,19 +75,20 @@ export function PropertyCard({
             </div>
           )}
           
-          {/* Badge del tipo - solo visible cuando la imagen carga */}
-          <div className={`absolute top-3 left-3 badge-type transition-opacity duration-300 ${
+          {/* Badges container para evitar superposición */}
+          <div className={`absolute top-3 left-3 right-3 flex justify-between items-start gap-2 transition-opacity duration-300 ${
             imageLoaded || imageError ? 'opacity-100' : 'opacity-0'
           }`}>
-            <HiHome className="w-3 h-3" />
-            <span>{property.tipo}</span>
-          </div>
+            {/* Badge del tipo */}
+            <div className="badge-type flex-shrink-0 shadow-sm">
+              <HiHome className="w-3 h-3" />
+              <span className="truncate max-w-20">{property.tipo}</span>
+            </div>
 
-          {/* Badge de precio - solo visible cuando la imagen carga */}
-          <div className={`absolute top-3 right-3 px-2 py-1 rounded-md text-xs font-bold bg-black/70 text-white transition-opacity duration-300 ${
-            imageLoaded || imageError ? 'opacity-100' : 'opacity-0'
-          }`}>
-            {formatPrice(property.precio)}
+            {/* Badge de precio */}
+            <div className="px-2 py-1 rounded-md text-xs font-bold bg-black/80 text-white flex-shrink-0 shadow-lg backdrop-blur-sm">
+              {formatPrice(property.precio)}
+            </div>
           </div>
         </div>
 

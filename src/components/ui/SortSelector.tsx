@@ -117,13 +117,15 @@ export function SortSelector({
           <>
             {/* Overlay */}
             <div 
-              className="fixed inset-0 z-10"
+              className="fixed inset-0 z-10 animate-in fade-in-0 duration-200"
               onClick={() => setIsOpen(false)}
             />
             
             {/* Menu */}
             <div 
-              className="absolute top-full mt-1 left-0 right-0 z-20 py-1 rounded-lg shadow-lg border border-default"
+              className="absolute top-full mt-1 left-0 right-0 z-20 py-1 rounded-lg shadow-lg border border-default
+                         animate-in slide-in-from-top-2 fade-in-0 duration-200
+                         transform origin-top"
               style={{ 
                 backgroundColor: 'var(--color-surface)',
                 boxShadow: 'var(--shadow-lg)'
@@ -136,9 +138,10 @@ export function SortSelector({
                   className={`
                     w-full px-4 py-2 text-left
                     flex items-center space-x-2
-                    transition-colors duration-200
-                    hover:bg-gray-50
-                    ${option.value === value ? 'bg-primary-50 text-primary-700' : ''}
+                    transition-all duration-200 ease-out
+                    hover:bg-gray-50 hover:translate-x-1 hover:shadow-sm
+                    ${option.value === value ? 'bg-primary-50 text-primary-700 scale-105' : ''}
+                    active:scale-95
                   `}
                   style={{
                     color: option.value === value 

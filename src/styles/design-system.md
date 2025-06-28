@@ -348,7 +348,7 @@
 - ✅ Componentes específicos para design consistency
 - ✅ Grids responsivos reutilizables
 - ✅ Sistema de skeleton completo
-- ✅ Estados hover/focus mejorados
+- ✅ Estados hover/focus mejorados 
 - ✅ **NUEVO: Sistema de Favoritos completo** (diciembre 2024)
   - FavoriteButton con 2 variantes (icon/button)
   - FavoritesCounter con badge dinámico

@@ -55,15 +55,15 @@ export function SearchInput({
 
   return (
     <div className={`relative ${className}`}>
-      <div 
+              <div 
         className={`
           relative flex items-center
           ${sizeClasses[size]}
           border border-default rounded-lg
-          transition-all duration-200
+          transition-all duration-300 ease-out
           ${isFocused 
-            ? 'border-primary-600 ring-2 ring-primary-100' 
-            : 'hover:border-primary-400'
+            ? 'border-primary-600 ring-2 ring-primary-100 shadow-lg scale-105' 
+            : 'hover:border-primary-400 hover:shadow-md'
           }
         `}
         style={{
@@ -121,14 +121,21 @@ export function SearchInput({
       </div>
 
       {/* Indicador de resultados (opcional) */}
-      {internalValue && (
+      <div className={`
+        absolute top-full mt-1 left-0 text-xs
+        transition-all duration-200 ease-out
+        ${internalValue 
+          ? 'opacity-75 translate-y-0' 
+          : 'opacity-0 -translate-y-2 pointer-events-none'
+        }
+      `}>
         <div 
-          className="absolute top-full mt-1 left-0 text-xs opacity-75"
+          className="bg-white px-2 py-1 rounded-md shadow-sm border border-gray-200"
           style={{ color: 'var(--color-text-secondary)' }}
         >
           Buscando "{internalValue}"...
         </div>
-      )}
+      </div>
     </div>
   );
 } 

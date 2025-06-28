@@ -71,6 +71,31 @@ export function Pagination({
     lg: 'w-6 h-6'
   };
 
+  const handlePageChange = (page: number) => {
+    // Scroll suave hacia el área de resultados
+    const resultsContainer = document.querySelector('[data-search-results]') || 
+                            document.querySelector('[data-properties-grid]') ||
+                            document.querySelector('.grid-properties')?.parentElement;
+    
+    if (resultsContainer) {
+      const rect = resultsContainer.getBoundingClientRect();
+      const scrollTop = window.pageYOffset + rect.top - 100; // 100px offset desde arriba
+      
+      window.scrollTo({ 
+        top: Math.max(0, scrollTop), 
+        behavior: 'smooth' 
+      });
+      
+      // Pequeño delay para que el scroll termine antes del cambio
+      setTimeout(() => {
+        onPageChange(page);
+      }, 150);
+    } else {
+      // Fallback si no encuentra el contenedor
+      onPageChange(page);
+    }
+  };
+
   // Variante Load More (Infinite Scroll)
   if (variant === 'loadmore') {
     return (
@@ -108,7 +133,7 @@ export function Pagination({
         <Button
           variant="outline"
           size={size}
-          onClick={() => onPageChange(currentPage - 1)}
+          onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage <= 1}
           className="flex items-center space-x-2"
         >
@@ -126,7 +151,7 @@ export function Pagination({
         <Button
           variant="outline"
           size={size}
-          onClick={() => onPageChange(currentPage + 1)}
+          onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage >= totalPages}
           className="flex items-center space-x-2"
         >
@@ -149,7 +174,7 @@ export function Pagination({
       <Button
         variant="outline"
         size={size}
-        onClick={() => onPageChange(currentPage - 1)}
+        onClick={() => handlePageChange(currentPage - 1)}
         disabled={currentPage <= 1}
         className={`${buttonSizes[size]} flex items-center justify-center`}
         aria-label="Página anterior"
@@ -179,7 +204,7 @@ export function Pagination({
             key={page}
             variant={isActive ? "primary" : "outline"}
             size={size}
-            onClick={() => onPageChange(pageNumber)}
+            onClick={() => handlePageChange(pageNumber)}
             className={`${buttonSizes[size]} min-w-0 flex items-center justify-center`}
             aria-label={`Ir a página ${pageNumber}`}
             aria-current={isActive ? "page" : undefined}
@@ -193,7 +218,7 @@ export function Pagination({
       <Button
         variant="outline"
         size={size}
-        onClick={() => onPageChange(currentPage + 1)}
+        onClick={() => handlePageChange(currentPage + 1)}
         disabled={currentPage >= totalPages}
         className={`${buttonSizes[size]} flex items-center justify-center`}
         aria-label="Página siguiente"

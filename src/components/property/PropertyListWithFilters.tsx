@@ -82,28 +82,28 @@ export function PropertyListWithFilters({
           {/* Controles de vista y filtros */}
           <div className="flex items-center space-x-2">
             {/* Toggle de vista */}
-            <div className="hidden md:flex items-center border border-default rounded-lg overflow-hidden">
+            <div className="hidden md:flex items-center border border-default rounded-lg overflow-hidden shadow-sm">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-2 transition-colors ${
+                className={`p-2 transition-all duration-200 ease-out relative ${
                   viewMode === 'grid' 
-                    ? 'bg-primary-600 text-white' 
-                    : 'hover:bg-gray-50 text-gray-600'
+                    ? 'bg-primary-600 text-white shadow-md scale-105' 
+                    : 'hover:bg-gray-50 text-gray-600 hover:scale-110'
                 }`}
                 aria-label="Vista en grilla"
               >
-                <HiViewGrid className="w-5 h-5" />
+                <HiViewGrid className="w-5 h-5 transition-transform duration-200" />
               </button>
               <button
                 onClick={() => setViewMode('list')}
-                className={`p-2 transition-colors ${
+                className={`p-2 transition-all duration-200 ease-out relative ${
                   viewMode === 'list' 
-                    ? 'bg-primary-600 text-white' 
-                    : 'hover:bg-gray-50 text-gray-600'
+                    ? 'bg-primary-600 text-white shadow-md scale-105' 
+                    : 'hover:bg-gray-50 text-gray-600 hover:scale-110'
                 }`}
                 aria-label="Vista en lista"
               >
-                <HiViewList className="w-5 h-5" />
+                <HiViewList className="w-5 h-5 transition-transform duration-200" />
               </button>
             </div>
 
@@ -212,23 +212,36 @@ export function PropertyListWithFilters({
         )}
 
         {/* Contenido principal */}
-        <div className="flex-1 min-w-0">
+        <div className="flex-1 min-w-0" data-search-results>
           
           {/* Loading state */}
-          {loading && (
-            <div className="grid-properties">
-              {[...Array(6)].map((_, i) => (
-                <div key={i} className="h-80">
-                  <LoadingCard rows={6} />
-                </div>
-              ))}
-            </div>
-          )}
+          <div className={`
+            transition-all duration-500 ease-out
+            ${loading ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}
+          `}>
+            {loading && (
+              <div className="grid-properties">
+                {[...Array(6)].map((_, i) => (
+                  <div 
+                    key={i} 
+                    className="h-80 animate-in fade-in-0 slide-in-from-bottom-4"
+                    style={{ animationDelay: `${i * 100}ms` }}
+                  >
+                    <LoadingCard rows={6} />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
 
           {/* Contenido de propiedades */}
-          {!loading && (
-            <>
-              {totalResults === 0 ? (
+          <div className={`
+            transition-all duration-500 ease-out
+            ${!loading ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}
+          `}>
+            {!loading && (
+              <>
+                {totalResults === 0 ? (
                 /* Estado vacío */
                 <Card padding="lg" className="text-center">
                   <div className="space-y-4">
@@ -259,14 +272,22 @@ export function PropertyListWithFilters({
                 </Card>
               ) : (
                 /* Grid de propiedades */
-                <div className={viewMode === 'grid' ? 'grid-properties' : 'space-y-4'}>
-                  {paginatedProperties.map(property => (
-                    <PropertyCard
+                <div 
+                  className={viewMode === 'grid' ? 'grid-properties' : 'space-y-4'}
+                  data-properties-grid
+                >
+                  {paginatedProperties.map((property, index) => (
+                    <div
                       key={property.id}
-                      property={property}
-                      showRecommendations={showRecommendations}
-                      className={viewMode === 'list' ? 'w-full' : ''}
-                    />
+                      className="animate-in fade-in-0 slide-in-from-bottom-4"
+                      style={{ animationDelay: `${index * 50}ms` }}
+                    >
+                      <PropertyCard
+                        property={property}
+                        showRecommendations={showRecommendations}
+                        className={viewMode === 'list' ? 'w-full' : ''}
+                      />
+                    </div>
                   ))}
                 </div>
               )}
@@ -285,6 +306,7 @@ export function PropertyListWithFilters({
               )}
             </>
           )}
+          </div>
         </div>
       </div>
     </div>

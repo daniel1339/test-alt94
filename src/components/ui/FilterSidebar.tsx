@@ -95,8 +95,9 @@ export function FilterSidebar({
         ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
         fixed lg:static top-0 left-0 h-full lg:h-auto
         w-80 lg:w-full
-        transition-transform duration-300 ease-in-out
+        transition-all duration-500 ease-out
         z-40 lg:z-auto
+        ${isOpen ? 'shadow-2xl' : 'shadow-none'}
       `}>
         <Card padding="lg" className="h-full lg:h-auto overflow-y-auto">
           {/* Header */}
@@ -167,8 +168,11 @@ export function FilterSidebar({
               )}
             </button>
 
-            {expandedSections.ciudad && (
-              <div className="mt-3 pl-6 space-y-2">
+            <div className={`
+              overflow-hidden transition-all duration-300 ease-out
+              ${expandedSections.ciudad ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}
+            `}>
+              <div className="mt-3 pl-6 space-y-2 transform transition-transform duration-200">
                 {availableCities.map(city => (
                   <label key={city} className="flex items-center space-x-2 cursor-pointer">
                     <input
@@ -186,7 +190,7 @@ export function FilterSidebar({
                   </label>
                 ))}
               </div>
-            )}
+            </div>
           </div>
 
           {/* Filtro por Tipo */}
@@ -222,8 +226,11 @@ export function FilterSidebar({
               )}
             </button>
 
-            {expandedSections.tipo && (
-              <div className="mt-3 pl-6 space-y-2">
+            <div className={`
+              overflow-hidden transition-all duration-300 ease-out
+              ${expandedSections.tipo ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}
+            `}>
+              <div className="mt-3 pl-6 space-y-2 transform transition-transform duration-200">
                 {availableTypes.map(type => (
                   <label key={type} className="flex items-center space-x-2 cursor-pointer">
                     <input
@@ -241,7 +248,7 @@ export function FilterSidebar({
                   </label>
                 ))}
               </div>
-            )}
+            </div>
           </div>
 
           {/* Filtro por Precio */}
@@ -277,8 +284,11 @@ export function FilterSidebar({
               )}
             </button>
 
-            {expandedSections.precio && (
-              <div className="mt-3 pl-6 space-y-3">
+            <div className={`
+              overflow-hidden transition-all duration-300 ease-out
+              ${expandedSections.precio ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}
+            `}>
+              <div className="mt-3 pl-6 space-y-3 transform transition-transform duration-200">
                 <div>
                   <label 
                     className="block text-sm font-medium mb-1"
@@ -310,7 +320,7 @@ export function FilterSidebar({
                   />
                 </div>
               </div>
-            )}
+            </div>
           </div>
 
           {/* Resumen de filtros activos */}
