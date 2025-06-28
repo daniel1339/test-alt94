@@ -4,9 +4,9 @@ import { NextResponse } from 'next/server';
  * Standardized success response
  */
 export function successResponse(
-  data: any, 
+  data: unknown, 
   message?: string, 
-  additionalFields?: Record<string, any>
+  additionalFields?: Record<string, unknown>
 ) {
   return NextResponse.json({
     success: true,
@@ -23,7 +23,7 @@ export function successResponse(
 export function errorResponse(
   message: string, 
   status: number = 500,
-  additionalFields?: Record<string, any>
+  additionalFields?: Record<string, unknown>
 ) {
   return NextResponse.json({
     success: false,

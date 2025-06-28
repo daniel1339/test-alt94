@@ -24,10 +24,10 @@ export function useFavoritesActions(): FavoritesActions {
       if (savedFavorites) {
         const parsedFavorites = JSON.parse(savedFavorites);
         return Array.isArray(parsedFavorites) 
-          ? parsedFavorites.map((fav: any) => fav.id).filter(Boolean)
+          ? parsedFavorites.map((fav: { id: number }) => fav.id).filter(Boolean)
           : [];
       }
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error reading favorites from localStorage:', error);
     }
     

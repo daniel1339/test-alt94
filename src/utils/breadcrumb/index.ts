@@ -69,7 +69,7 @@ export const createLoadingBreadcrumb = (section: string): BreadcrumbItem[] => [
 /**
  * Extrae ID del título (helper function)
  */
-function extractIdFromTitle(title: string): string {
+function extractIdFromTitle(_title: string): string {
   // Esta función se puede mejorar según el patrón de títulos
   return '1'; // placeholder
 } 

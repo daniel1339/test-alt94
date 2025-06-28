@@ -133,7 +133,7 @@ export function SearchInput({
           className="bg-white px-2 py-1 rounded-md shadow-sm border border-gray-200"
           style={{ color: 'var(--color-text-secondary)' }}
         >
-          Buscando "{internalValue}"...
+          Buscando &quot;{internalValue}&quot;...
         </div>
       </div>
     </div>
