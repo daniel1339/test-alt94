@@ -64,4 +64,4 @@ export const createLoadingBreadcrumb = (section: string): BreadcrumbItem[] => [
   ...baseBreadcrumb,
   { label: section, href: `/${section.toLowerCase()}` },
   { label: 'Cargando...', isActive: true }
-]; 
+];
