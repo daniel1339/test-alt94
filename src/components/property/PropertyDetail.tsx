@@ -90,11 +90,11 @@ export function PropertyDetail({ property, className = '' }: PropertyDetailProps
               </div>
               <div className="space-y-2">
                 <div className="text-xs text-muted text-center">
-                  💡 <strong>Coming soon:</strong> Contact system
+                  💡 <strong>Próximamente:</strong> Sistema de contacto
                 </div>
                 <Button variant="outline" size="lg" className="w-full" disabled>
                 <HiCurrencyDollar className="w-4 h-4 mr-2" />
-                  Consult (Coming soon)
+                  Consultar (Próximamente)
               </Button>
               </div>
             </div>
@@ -103,13 +103,13 @@ export function PropertyDetail({ property, className = '' }: PropertyDetailProps
           {/* Main features */}
           <Card padding="lg" shadow="md">
             <h3 className="text-lg font-semibold mb-4 text-primary">
-              Features
+              Características
             </h3>
             <div className="space-y-4">
               <div className="feature-row">
                 <div className="feature-label">
                   <HiHome className="w-5 h-5" />
-                  <span>Rooms</span>
+                  <span>Habitaciones</span>
                 </div>
                 <span className="feature-value">
                   {property.ambientes}
@@ -119,7 +119,7 @@ export function PropertyDetail({ property, className = '' }: PropertyDetailProps
               <div className="feature-row">
                 <div className="feature-label">
                   <HiViewGrid className="w-5 h-5" />
-                  <span>Area</span>
+                  <span>Área</span>
                 </div>
                 <span className="feature-value">
                   {formatArea(property.metros_cuadrados)}
@@ -129,7 +129,7 @@ export function PropertyDetail({ property, className = '' }: PropertyDetailProps
               <div className="feature-row">
                 <div className="feature-label">
                   <HiLocationMarker className="w-5 h-5" />
-                  <span>Location</span>
+                  <span>Ubicación</span>
                 </div>
                 <span className="feature-value">
                   {property.ciudad}
@@ -141,12 +141,12 @@ export function PropertyDetail({ property, className = '' }: PropertyDetailProps
           {/* Additional information */}
           <Card padding="lg" shadow="md">
             <h3 className="text-lg font-semibold mb-4 text-primary">
-              Additional information
+              Información adicional
             </h3>
             <div className="space-y-3 text-sm">
               <div className="flex justify-between">
                 <span className="text-secondary">
-                  Property ID:
+                  ID de Propiedad:
                 </span>
                 <span className="font-mono text-muted">
                   #{property.id}
@@ -154,7 +154,7 @@ export function PropertyDetail({ property, className = '' }: PropertyDetailProps
               </div>
               <div className="flex justify-between">
                 <span className="text-secondary">
-                  Property type:
+                  Tipo de propiedad:
                 </span>
                 <span className="text-primary">
                   {property.tipo}
@@ -162,7 +162,7 @@ export function PropertyDetail({ property, className = '' }: PropertyDetailProps
               </div>
               <div className="flex justify-between">
                 <span className="text-secondary">
-                  Price per room:
+                  Precio por habitación:
                 </span>
                 <span className="text-primary">
                   {formatPricePerRoom(property.precio, property.ambientes)}
@@ -176,27 +176,27 @@ export function PropertyDetail({ property, className = '' }: PropertyDetailProps
       {/* Extended description (placeholder) */}
       <Card padding="lg" shadow="md">
         <h3 className="text-xl font-semibold mb-4 text-primary">
-          Description
+          Descripción
         </h3>
         <div className="prose prose-gray max-w-none text-secondary">
           <p>
-            Excellent {property.tipo.toLowerCase()} located in {property.ciudad}, 
-            with {property.ambientes} rooms distributed in {property.metros_cuadrados} square meters. 
-            This property offers a great opportunity both for living and investing.
+            Excelente {property.tipo.toLowerCase()} ubicado en {property.ciudad}, 
+            con {property.ambientes} habitaciones distribuidas en {property.metros_cuadrados} metros cuadrados. 
+            Esta propiedad ofrece una gran oportunidad tanto para vivir como para invertir.
           </p>
           <p>
-            The property is located in a privileged area of {property.ciudad}, 
-            with excellent connectivity and access to services. The price of {formatPrice(property.precio)} 
-            represents a great opportunity in the current market.
+            La propiedad está ubicada en una zona privilegiada de {property.ciudad}, 
+            con excelente conectividad y acceso a servicios. El precio de {formatPrice(property.precio)} 
+            representa una gran oportunidad en el mercado actual.
           </p>
           <p>
-            <strong>Highlighted features:</strong>
+            <strong>Características destacadas:</strong>
           </p>
           <ul>
-            <li>{property.ambientes} spacious and well-lit rooms</li>
-            <li>{formatArea(property.metros_cuadrados)} total area</li>
-            <li>Strategic location in {property.ciudad}</li>
-            <li>Excellent price-quality ratio</li>
+            <li>{property.ambientes} habitaciones amplias y bien iluminadas</li>
+            <li>{formatArea(property.metros_cuadrados)} de superficie total</li>
+            <li>Ubicación estratégica en {property.ciudad}</li>
+            <li>Excelente relación precio-calidad</li>
           </ul>
         </div>
       </Card>
