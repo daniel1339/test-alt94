@@ -186,8 +186,7 @@ export function PropertyDetail({ property, className = '' }: PropertyDetailProps
           </p>
           <p>
             La propiedad está ubicada en una zona privilegiada de {property.ciudad}, 
-            con excelente conectividad y acceso a servicios. El precio de {formatPrice(property.precio)} 
-            representa una gran oportunidad en el mercado actual.
+            con excelente conectividad y acceso a servicios. El precio de {formatPrice(property.precio) } representa una gran oportunidad en el mercado actual.
           </p>
           <p>
             <strong>Características destacadas:</strong>
