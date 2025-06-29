@@ -8,7 +8,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           
-          {/* Logo y descripción */}
+          {/* Logo and description */}
           <div className="md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold bg-primary-600">
@@ -24,7 +24,7 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Enlaces rápidos */}
+          {/* Quick links */}
           <div>
             <h4 className="font-semibold mb-4 text-primary">Enlaces</h4>
             <ul className="space-y-2 text-sm">
@@ -55,7 +55,7 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Información técnica */}
+          {/* Technical information */}
           <div>
             <h4 className="font-semibold mb-4 text-primary">Tecnología</h4>
             <ul className="space-y-2 text-sm text-secondary">

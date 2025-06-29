@@ -71,7 +71,7 @@ export function SearchInput({
           transition: 'all var(--transition-fast)'
         }}
       >
-        {/* Icono de búsqueda */}
+        {/* Search icon */}
         <HiSearch 
           className={`
             ${iconSizes[size]} 
@@ -102,7 +102,7 @@ export function SearchInput({
           }}
         />
 
-        {/* Botón limpiar */}
+        {/* Clear button */}
         {internalValue && (
           <button
             onClick={handleClear}
@@ -113,14 +113,14 @@ export function SearchInput({
               rounded-full hover:bg-gray-100
               p-1 flex-shrink-0
             `}
-            aria-label="Limpiar búsqueda"
+            aria-label="Clear search"
           >
             <HiX className="w-full h-full" />
           </button>
         )}
       </div>
 
-      {/* Indicador de resultados (opcional) */}
+      {/* Results indicator (optional) */}
       <div className={`
         absolute top-full mt-1 left-0 text-xs
         transition-all duration-200 ease-out

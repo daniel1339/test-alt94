@@ -64,7 +64,7 @@ export function SortSelector({
 
   return (
     <div className={`relative ${className}`}>
-      {/* Información de resultados */}
+      {/* Results information */}
       {totalResults !== undefined && (
         <div 
           className="text-sm mb-2"
@@ -160,7 +160,7 @@ export function SortSelector({
                     {option.label}
                   </span>
                   
-                  {/* Checkmark para opción seleccionada */}
+                  {/* Checkmark for selected option */}
                   {option.value === value && (
                     <div className="ml-auto">
                       <div 

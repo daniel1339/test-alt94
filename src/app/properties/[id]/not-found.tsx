@@ -13,7 +13,7 @@ export default function PropertyNotFound() {
         {/* Breadcrumb navigation */}
         <Breadcrumb items={breadcrumbItems} />
         
-        {/* Contenido de error */}
+        {/* Error content */}
         <div className="min-h-[60vh] flex items-center justify-center">
           <Card padding="lg" className="text-center max-w-md mx-auto">
             <div className="space-y-6">

@@ -47,7 +47,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Características principales */}
+        {/* Main Features */}
         <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div className="text-center space-y-4">
             <div className="w-16 h-16 rounded-xl mx-auto flex items-center justify-center bg-primary-100">
@@ -122,7 +122,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Estadísticas rápidas */}
+        {/* Quick Stats */}
         <section className="bg-surface-gray rounded-2xl p-8">
           <div className="text-center mb-8">
             <h2 className="text-2xl font-bold text-primary">
@@ -153,7 +153,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Tecnología */}
+        {/* Technology */}
         <section className="text-center space-y-8">
           <div className="space-y-4">
             <div className="w-16 h-16 rounded-xl mx-auto flex items-center justify-center bg-info-100">
@@ -183,7 +183,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Call to Action final */}
+        {/* Final Call to Action */}
         <section className="text-center space-y-6 py-12">
           <h2 className="text-3xl font-bold text-primary">
             ¿Listo para encontrar tu próxima propiedad?

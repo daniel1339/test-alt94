@@ -20,7 +20,7 @@ interface RecommendationsApiResponse {
 }
 
 /**
- * Hook personalizado para cargar recomendaciones de una propiedad
+ * Custom hook to load property recommendations
  */
 export function useRecommendations(propertyId: string): UseRecommendationsResult {
   const [recommendations, setRecommendations] = useState<PropertyWithScore[]>([]);
@@ -63,6 +63,7 @@ export function useRecommendations(propertyId: string): UseRecommendationsResult
     if (propertyId) {
       fetchRecommendations();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [propertyId]);
 
   return {
@@ -73,4 +74,4 @@ export function useRecommendations(propertyId: string): UseRecommendationsResult
   };
 }
 
-// Funciones SSR movidas a src/lib/ssr/property.ts 
+// SSR functions moved to src/lib/ssr/property.ts 

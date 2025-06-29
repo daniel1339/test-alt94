@@ -1,21 +1,21 @@
 import { Property } from '@/types/property';
 
 /**
- * Obtiene todas las propiedades desde el servidor (SSR)
+ * Gets all properties from server (SSR)
  */
 export async function getAllPropertiesSSR(): Promise<Property[]> {
   try {
-    // En producción, esto sería una llamada real a la API
-    // Por ahora, importamos los datos directamente
+    // In production, this would be a real API call
+    // For now, we import the data directly
     const { default: propertiesData } = await import('@/data/properties.json');
     
-    // Validar que los datos sean un array
+    // Validate that data is an array
     if (!Array.isArray(propertiesData)) {
       console.error('Properties data is not an array');
       return [];
     }
     
-    // Transformar y validar los datos
+    // Transform and validate data
     const properties: Property[] = propertiesData.map((prop: unknown) => {
       const p = prop as Record<string, unknown>;
       return {
@@ -38,7 +38,7 @@ export async function getAllPropertiesSSR(): Promise<Property[]> {
 }
 
 /**
- * Obtiene estadísticas básicas de las propiedades
+ * Gets basic properties statistics
  */
 export async function getPropertiesStatsSSR(): Promise<{
   total: number;

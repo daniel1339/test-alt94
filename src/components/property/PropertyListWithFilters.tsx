@@ -64,10 +64,10 @@ export function PropertyListWithFilters({
   return (
     <div className={`space-y-6 ${className}`}>
       
-      {/* Header con búsqueda y controles */}
+      {/* Header with search and controls */}
       <div className="space-y-4">
         
-        {/* Búsqueda principal */}
+        {/* Main search */}
         <div className="flex flex-col lg:flex-row gap-4">
           <div className="flex-1">
             <SearchInput
@@ -79,9 +79,9 @@ export function PropertyListWithFilters({
             />
           </div>
           
-          {/* Controles de vista y filtros */}
+          {/* View and filters controls */}
           <div className="flex items-center space-x-2">
-            {/* Toggle de vista */}
+            {/* View toggle */}
             <div className="hidden md:flex items-center border border-default rounded-lg overflow-hidden shadow-sm">
               <button
                 onClick={() => setViewMode('grid')}
@@ -90,7 +90,7 @@ export function PropertyListWithFilters({
                     ? 'bg-primary-600 text-white shadow-md scale-105' 
                     : 'hover:bg-gray-50 text-gray-600 hover:scale-110'
                 }`}
-                aria-label="Vista en grilla"
+                aria-label="Grid view"
               >
                 <HiViewGrid className="w-5 h-5 transition-transform duration-200" />
               </button>
@@ -101,13 +101,13 @@ export function PropertyListWithFilters({
                     ? 'bg-primary-600 text-white shadow-md scale-105' 
                     : 'hover:bg-gray-50 text-gray-600 hover:scale-110'
                 }`}
-                aria-label="Vista en lista"
+                aria-label="List view"
               >
                 <HiViewList className="w-5 h-5 transition-transform duration-200" />
               </button>
             </div>
 
-            {/* Botón de filtros */}
+            {/* Filters button */}
             {enableFilters && (
               <Button
                 variant={hasActiveFilters ? "primary" : "outline"}
@@ -127,16 +127,16 @@ export function PropertyListWithFilters({
           </div>
         </div>
 
-        {/* Barra de filtros activos */}
+        {/* Active filters bar */}
         {hasActiveFilters && (
           <div className="flex items-center justify-between p-3 bg-info-50 border border-info-200 rounded-lg">
             <div className="flex items-center space-x-2 text-sm">
               <span style={{ color: 'var(--color-info-700)' }} className="font-medium">
-                Filtros activos:
+                Active filters:
               </span>
               {searchQuery && (
                 <span className="px-2 py-1 bg-info-100 text-info-800 rounded text-xs">
-                  Búsqueda: &quot;{searchQuery}&quot;
+                  Search: &quot;{searchQuery}&quot;
                 </span>
               )}
               {filters.ciudad.map(city => (
@@ -162,12 +162,12 @@ export function PropertyListWithFilters({
               className="text-info-600 hover:text-info-800 flex items-center space-x-1"
             >
               <HiX className="w-4 h-4" />
-              <span>Limpiar todo</span>
+              <span>Clear all</span>
             </Button>
           </div>
         )}
 
-        {/* Controles de ordenamiento y resultados */}
+        {/* Sort and results controls */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <SortSelector
             value={sortBy}
@@ -179,10 +179,10 @@ export function PropertyListWithFilters({
         </div>
       </div>
 
-      {/* Layout con filtros y contenido */}
+      {/* Layout with filters and content */}
       <div className="flex gap-6">
         
-        {/* Sidebar de filtros */}
+        {/* Filters sidebar */}
         {enableFilters && (
           <div className="hidden lg:block lg:w-80 flex-shrink-0">
             <FilterSidebar
@@ -197,7 +197,7 @@ export function PropertyListWithFilters({
           </div>
         )}
 
-        {/* Sidebar móvil */}
+        {/* Mobile sidebar */}
         {enableFilters && (
           <FilterSidebar
             filters={filters}
@@ -211,7 +211,7 @@ export function PropertyListWithFilters({
           />
         )}
 
-        {/* Contenido principal */}
+        {/* Main content */}
         <div className="flex-1 min-w-0" data-search-results>
           
           {/* Loading state */}
@@ -234,7 +234,7 @@ export function PropertyListWithFilters({
             )}
           </div>
 
-          {/* Contenido de propiedades */}
+          {/* Properties content */}
           <div className={`
             transition-all duration-500 ease-out
             ${!loading ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}
@@ -242,7 +242,7 @@ export function PropertyListWithFilters({
             {!loading && (
               <>
                 {totalResults === 0 ? (
-                /* Estado vacío */
+                /* Empty state */
                 <Card padding="lg" className="text-center">
                   <div className="space-y-4">
                     <HiAdjustments 
@@ -271,7 +271,7 @@ export function PropertyListWithFilters({
                   </div>
                 </Card>
               ) : (
-                /* Grid de propiedades */
+                /* Properties grid */
                 <div 
                   className={viewMode === 'grid' ? 'grid-properties' : 'space-y-4'}
                   data-properties-grid
@@ -292,7 +292,7 @@ export function PropertyListWithFilters({
                 </div>
               )}
 
-              {/* Paginación */}
+              {/* Pagination */}
               {enablePagination && totalResults > 0 && totalPages > 1 && (
                 <div className="mt-8">
                   <Pagination

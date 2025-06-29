@@ -15,7 +15,7 @@ export function PropertyGallery({ images, title, className = '' }: PropertyGalle
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
   
-  // Si no hay imágenes, mostrar placeholder
+  // If no images, show placeholder
   if (!images || images.length === 0) {
     return (
       <div className={`aspect-video bg-surface-secondary rounded-xl flex items-center justify-center ${className}`}>
@@ -49,16 +49,16 @@ export function PropertyGallery({ images, title, className = '' }: PropertyGalle
 
   return (
     <div className={`space-y-4 ${className}`}>
-      {/* Imagen principal */}
+      {/* Main image */}
       <div className="relative aspect-video rounded-xl overflow-hidden group bg-gray-200">
-        {/* Skeleton mientras carga la imagen */}
+        {/* Skeleton while image loads */}
         {!imageLoaded && !imageError && (
           <div className="absolute inset-0 bg-gray-200 animate-pulse">
             <div className="h-full w-full bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 animate-pulse"></div>
           </div>
         )}
 
-        {/* Imagen principal */}
+        {/* Main image */}
         {!imageError && (
         <Image
           src={images[currentIndex]}
@@ -74,7 +74,7 @@ export function PropertyGallery({ images, title, className = '' }: PropertyGalle
           />
         )}
 
-        {/* Fallback si la imagen falla */}
+        {/* Fallback if image fails */}
         {imageError && (
           <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
             <div className="text-center text-gray-400">
@@ -84,10 +84,10 @@ export function PropertyGallery({ images, title, className = '' }: PropertyGalle
           </div>
         )}
         
-        {/* Controles de navegación - solo visible cuando hay múltiples imágenes y la imagen está cargada */}
+        {/* Navigation controls - only visible when there are multiple images and image is loaded */}
         {images.length > 1 && (imageLoaded || imageError) && (
           <>
-            {/* Botón anterior */}
+            {/* Previous button */}
             <button
               onClick={goToPrevious}
               className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
@@ -96,7 +96,7 @@ export function PropertyGallery({ images, title, className = '' }: PropertyGalle
               <HiChevronLeft className="w-5 h-5 text-white" />
             </button>
             
-            {/* Botón siguiente */}
+            {/* Next button */}
             <button
               onClick={goToNext}
               className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
@@ -105,7 +105,7 @@ export function PropertyGallery({ images, title, className = '' }: PropertyGalle
               <HiChevronRight className="w-5 h-5 text-white" />
             </button>
             
-            {/* Indicador de posición */}
+            {/* Position indicator */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-3 py-1 bg-black/50 rounded-full">
               <span className="text-white text-sm font-medium">
                 {currentIndex + 1} / {images.length}

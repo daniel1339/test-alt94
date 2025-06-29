@@ -9,12 +9,12 @@ export function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
-  // Detectar si estamos en el cliente para evitar hidration mismatch
+  // Detect if we're on client to avoid hydration mismatch
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  // Cerrar menú cuando se redimensiona la pantalla a desktop
+  // Close menu when screen resizes to desktop
   useEffect(() => {
     if (!isMounted) return;
     
@@ -28,7 +28,7 @@ export function MobileMenu() {
     return () => window.removeEventListener('resize', handleResize);
   }, [isMounted]);
 
-  // Prevenir scroll del body cuando el menú está abierto
+  // Prevent body scroll when menu is open
   useEffect(() => {
     if (!isMounted) return;
     
@@ -51,7 +51,7 @@ export function MobileMenu() {
     setIsOpen(false);
   };
 
-  // No renderizar hasta que el componente esté montado en el cliente
+  // Don't render until component is mounted on client
   if (!isMounted) {
     return (
       <button 
@@ -66,7 +66,7 @@ export function MobileMenu() {
 
   return (
     <>
-      {/* Botón hamburger */}
+      {/* Hamburger button */}
       <button 
         onClick={toggleMenu}
         className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
@@ -84,7 +84,7 @@ export function MobileMenu() {
             onClick={closeMenu}
           />
           
-          {/* Panel lateral */}
+          {/* Side panel */}
           <div className="fixed top-0 right-0 h-full w-80 bg-white shadow-2xl border-l border-gray-200">
             <div className="flex flex-col h-full">
               
@@ -102,7 +102,7 @@ export function MobileMenu() {
                 </button>
               </div>
 
-              {/* Navegación */}
+              {/* Navigation */}
               <nav className="flex-1 p-6 bg-white">
                 <div className="space-y-3">
                   
@@ -140,7 +140,7 @@ export function MobileMenu() {
                   </Link>
                 </div>
                 
-                {/* Contador de favoritos */}
+                {/* Favorites counter */}
                 <div className="mt-8 p-4 bg-gray-50 rounded-xl border border-gray-200">
                   <div className="text-center">
                     <p className="text-sm font-medium text-gray-700 mb-2">

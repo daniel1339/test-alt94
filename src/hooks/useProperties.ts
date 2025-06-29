@@ -38,7 +38,7 @@ interface UsePropertiesOptions {
 }
 
 /**
- * Hook personalizado para cargar listado de propiedades
+ * Custom hook to load properties list
  */
 export function useProperties(options: UsePropertiesOptions = {}): UsePropertiesResult {
   const { page = 1, limit = 12, initialProperties } = options;
@@ -79,6 +79,7 @@ export function useProperties(options: UsePropertiesOptions = {}): UseProperties
     if (!initialProperties) {
       fetchProperties();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, limit]);
 
   useEffect(() => {

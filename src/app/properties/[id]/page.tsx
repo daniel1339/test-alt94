@@ -11,7 +11,7 @@ interface PageProps {
   params: Promise<{ id: string }>;
 }
 
-// Metadata dinámica para SEO
+// Dynamic metadata for SEO
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
   const property = await getPropertySSR(id);
@@ -45,12 +45,12 @@ export default async function PropertyDetailPage({ params }: PageProps) {
   const { id } = await params;
   const property = await getPropertySSR(id);
 
-  // Si no se encuentra la propiedad, mostrar 404
+  // If property not found, show 404
   if (!property) {
     notFound();
   }
 
-  // Items del breadcrumb usando utilidad centralizada
+  // Breadcrumb items using centralized utility
   const breadcrumbItems = createPropertyDetailBreadcrumb(property.titulo);
 
   return (
@@ -59,7 +59,7 @@ export default async function PropertyDetailPage({ params }: PageProps) {
         {/* Breadcrumb navigation */}
         <Breadcrumb items={breadcrumbItems} />
         
-        {/* Componente principal de detalle */}
+        {/* Main detail component */}
         <PropertyDetail property={property} />
       </div>
     </MainLayout>

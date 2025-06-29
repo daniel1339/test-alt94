@@ -23,7 +23,7 @@ export function PropertyList({
     initialProperties
   });
 
-  // Estado de loading
+  // Loading state
   if (loading) {
     return (
       <div className={`space-y-6 ${className}`}>
@@ -41,7 +41,7 @@ export function PropertyList({
     );
   }
 
-  // Estado de error
+  // Error state
   if (error) {
     return (
       <div className={`text-center space-y-4 ${className}`}>
@@ -62,7 +62,7 @@ export function PropertyList({
     );
   }
 
-  // Estado vacío
+  // Empty state
   if (properties.length === 0) {
     return (
       <div className={`text-center space-y-4 py-12 ${className}`}>
@@ -77,17 +77,17 @@ export function PropertyList({
     );
   }
 
-  // Grid de propiedades
+  // Properties grid
   return (
     <div className={className}>
-      {/* Header con contador */}
+      {/* Header with counter */}
       <div className="mb-6">
         <p className="text-sm text-secondary">
           Mostrando <span className="font-medium">{properties.length}</span> propiedades
         </p>
       </div>
 
-      {/* Grid de propiedades */}
+      {/* Properties grid */}
       <div className="grid-properties">
         {properties.map((property) => (
           <PropertyCard

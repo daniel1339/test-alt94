@@ -32,7 +32,7 @@ export function FavoritesProvider({ children }: FavoritesProviderProps) {
   const [favorites, setFavorites] = useState<Property[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Cargar favoritos desde localStorage al inicializar
+  // Load favorites from localStorage on initialization
   useEffect(() => {
     try {
       const savedFavorites = localStorage.getItem('favorites');
@@ -48,7 +48,7 @@ export function FavoritesProvider({ children }: FavoritesProviderProps) {
     }
   }, []);
 
-  // Guardar favoritos en localStorage cuando cambien
+  // Save favorites to localStorage when they change
   useEffect(() => {
     if (!isLoading) {
       try {

@@ -1,9 +1,9 @@
 /**
- * Utilidades de formateo centralizadas
+ * Centralized formatting utilities
  */
 
 /**
- * Formatea un precio en pesos argentinos
+ * Formats a price in Argentine pesos
  */
 export const formatPrice = (price: number): string => {
   return new Intl.NumberFormat('es-AR', {
@@ -15,7 +15,7 @@ export const formatPrice = (price: number): string => {
 };
 
 /**
- * Calcula y formatea el precio por metro cuadrado
+ * Calculates and formats price per square meter
  */
 export const formatPricePerM2 = (price: number, m2: number): string => {
   if (m2 === 0) return 'N/A';
@@ -24,7 +24,7 @@ export const formatPricePerM2 = (price: number, m2: number): string => {
 };
 
 /**
- * Calcula y formatea el precio por ambiente
+ * Calculates and formats price per room
  */
 export const formatPricePerRoom = (price: number, rooms: number): string => {
   if (rooms === 0) return 'N/A';
@@ -33,21 +33,21 @@ export const formatPricePerRoom = (price: number, rooms: number): string => {
 };
 
 /**
- * Formatea números con separadores de miles
+ * Formats numbers with thousands separators
  */
 export const formatNumber = (num: number): string => {
   return new Intl.NumberFormat('es-AR').format(num);
 };
 
 /**
- * Formatea superficie con unidad
+ * Formats area with unit
  */
 export const formatArea = (area: number): string => {
   return `${formatNumber(area)} m²`;
 };
 
 /**
- * Formatea cantidad de ambientes
+ * Formats number of rooms
  */
 export const formatRooms = (rooms: number): string => {
   return `${rooms} amb.`;

@@ -72,31 +72,31 @@ export function Pagination({
   };
 
   const handlePageChange = (page: number) => {
-    // Scroll suave hacia el área de resultados
+    // Smooth scroll to results area
     const resultsContainer = document.querySelector('[data-search-results]') || 
                             document.querySelector('[data-properties-grid]') ||
                             document.querySelector('.grid-properties')?.parentElement;
     
     if (resultsContainer) {
       const rect = resultsContainer.getBoundingClientRect();
-      const scrollTop = window.pageYOffset + rect.top - 100; // 100px offset desde arriba
+      const scrollTop = window.pageYOffset + rect.top - 100; // 100px offset from top
       
       window.scrollTo({ 
         top: Math.max(0, scrollTop), 
         behavior: 'smooth' 
       });
       
-      // Pequeño delay para que el scroll termine antes del cambio
+      // Small delay for scroll to finish before change
       setTimeout(() => {
         onPageChange(page);
       }, 150);
     } else {
-      // Fallback si no encuentra el contenedor
+      // Fallback if container not found
       onPageChange(page);
     }
   };
 
-  // Variante Load More (Infinite Scroll)
+  // Load More variant (Infinite Scroll)
   if (variant === 'loadmore') {
     return (
       <div className={`flex justify-center pt-8 ${className}`}>
@@ -126,7 +126,7 @@ export function Pagination({
     );
   }
 
-  // Variante Simple (Solo prev/next)
+  // Simple variant (Only prev/next)
   if (variant === 'simple') {
     return (
       <div className={`flex items-center justify-between ${className}`}>
@@ -162,7 +162,7 @@ export function Pagination({
     );
   }
 
-  // Variante con números (completa)
+  // Numbers variant (complete)
   if (totalPages <= 1) return null;
 
   const visiblePages = getVisiblePages();
@@ -170,7 +170,7 @@ export function Pagination({
   return (
     <nav className={`flex items-center justify-center space-x-1 ${className}`} aria-label="Paginación">
       
-      {/* Botón Anterior */}
+      {/* Previous Button */}
       <Button
         variant="outline"
         size={size}
@@ -182,7 +182,7 @@ export function Pagination({
         <HiChevronLeft className={iconSizes[size]} />
       </Button>
 
-      {/* Números de página */}
+      {/* Page numbers */}
       {showNumbers && visiblePages.map((page, index) => {
         if (page === '...') {
           return (
@@ -214,7 +214,7 @@ export function Pagination({
         );
       })}
 
-      {/* Botón Siguiente */}
+      {/* Next Button */}
       <Button
         variant="outline"
         size={size}
@@ -226,7 +226,7 @@ export function Pagination({
         <HiChevronRight className={iconSizes[size]} />
       </Button>
 
-      {/* Info adicional */}
+      {/* Additional info */}
       <div 
         className="hidden sm:flex items-center ml-6 text-sm"
         style={{ color: 'var(--color-text-secondary)' }}

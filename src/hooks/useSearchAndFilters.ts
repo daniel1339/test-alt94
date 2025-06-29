@@ -18,31 +18,31 @@ interface UseSearchAndFiltersProps {
 }
 
 interface UseSearchAndFiltersReturn {
-  // Estado
+  // State
   searchQuery: string;
   filters: FilterState;
   currentPage: number;
   sortBy: 'relevance' | 'price-asc' | 'price-desc' | 'newest';
   
-  // Resultados procesados
+  // Processed results
   filteredProperties: Property[];
   paginatedProperties: Property[];
   totalPages: number;
   totalResults: number;
   
-  // Acciones
+  // Actions
   setSearchQuery: (query: string) => void;
   setFilters: (filters: FilterState) => void;
   setCurrentPage: (page: number) => void;
   setSortBy: (sort: 'relevance' | 'price-asc' | 'price-desc' | 'newest') => void;
   clearAllFilters: () => void;
   
-  // Datos para filtros
+  // Filter data
   availableCities: string[];
   availableTypes: string[];
   priceRange: { min: number; max: number };
   
-  // Estados de UI
+  // UI states
   hasActiveFilters: boolean;
   loading: boolean;
 }
@@ -67,7 +67,7 @@ export function useSearchAndFilters({
   const [loading, setLoading] = useState(false);
   const isInitialMount = useRef(true);
 
-  // Datos estáticos extraídos de propiedades
+  // Static data extracted from properties
   const { availableCities, availableTypes, priceRange } = useMemo(() => {
     const cities = [...new Set(properties.map(p => p.ciudad))].sort();
     const types = [...new Set(properties.map(p => p.tipo))].sort();
@@ -83,11 +83,11 @@ export function useSearchAndFilters({
     };
   }, [properties]);
 
-  // Función de filtrado y búsqueda
+  // Filtering and search function
   const filteredProperties = useMemo(() => {
     let filtered = [...properties];
 
-    // Filtro por búsqueda de texto
+    // Text search filter
     if (state.searchQuery.trim()) {
       const query = state.searchQuery.toLowerCase().trim();
       filtered = filtered.filter(property => 
@@ -97,21 +97,21 @@ export function useSearchAndFilters({
       );
     }
 
-    // Filtro por ciudad
+    // City filter
     if (state.filters.ciudad.length > 0) {
       filtered = filtered.filter(property => 
         state.filters.ciudad.includes(property.ciudad)
       );
     }
 
-    // Filtro por tipo
+    // Type filter
     if (state.filters.tipo.length > 0) {
       filtered = filtered.filter(property => 
         state.filters.tipo.includes(property.tipo)
       );
     }
 
-    // Filtro por precio
+    // Price filter
     if (state.filters.precioMin !== null) {
       filtered = filtered.filter(property => 
         property.precio >= state.filters.precioMin!
@@ -124,7 +124,7 @@ export function useSearchAndFilters({
       );
     }
 
-    // Ordenamiento
+    // Sorting
     filtered.sort((a, b) => {
       switch (state.sortBy) {
         case 'price-asc':
@@ -132,10 +132,10 @@ export function useSearchAndFilters({
         case 'price-desc':
           return b.precio - a.precio;
         case 'newest':
-          return b.id - a.id; // Asumiendo que ID mayor = más nuevo
+          return b.id - a.id; // Assuming higher ID = newer
         case 'relevance':
         default:
-          // Para relevance, priorizamos coincidencias exactas en título
+          // For relevance, we prioritize exact matches in title
           if (state.searchQuery.trim()) {
             const query = state.searchQuery.toLowerCase();
             const aScore = a.titulo.toLowerCase().includes(query) ? 1 : 0;
@@ -149,7 +149,7 @@ export function useSearchAndFilters({
     return filtered;
   }, [properties, state.searchQuery, state.filters, state.sortBy]);
 
-  // Propiedades paginadas
+  // Paginated properties
   const { paginatedProperties, totalPages } = useMemo(() => {
     const startIndex = (state.currentPage - 1) * state.itemsPerPage;
     const endIndex = startIndex + state.itemsPerPage;
@@ -162,12 +162,12 @@ export function useSearchAndFilters({
     };
   }, [filteredProperties, state.currentPage, state.itemsPerPage]);
 
-  // Reset página cuando cambian filtros o búsqueda
+  // Reset page when filters or search change
   useEffect(() => {
     setState(prev => ({ ...prev, currentPage: 1 }));
   }, [state.searchQuery, state.filters, state.sortBy]);
 
-  // Manejar loading state
+  // Handle loading state
   useEffect(() => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
@@ -177,12 +177,12 @@ export function useSearchAndFilters({
     setLoading(true);
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 300); // Delay para mostrar animación de carga
+    }, 300); // Delay to show loading animation
 
     return () => clearTimeout(timer);
   }, [state.searchQuery, state.filters, state.sortBy]);
 
-  // Verificar si hay filtros activos
+  // Check if there are active filters
   const hasActiveFilters = useMemo(() => {
     return state.searchQuery.trim() !== '' ||
            state.filters.ciudad.length > 0 ||
@@ -191,7 +191,7 @@ export function useSearchAndFilters({
            state.filters.precioMax !== null;
   }, [state.searchQuery, state.filters]);
 
-  // Acciones
+  // Actions
   const setSearchQuery = (query: string) => {
     setState(prev => ({ ...prev, searchQuery: query }));
   };
@@ -224,31 +224,31 @@ export function useSearchAndFilters({
   };
 
   return {
-    // Estado
+    // State
     searchQuery: state.searchQuery,
     filters: state.filters,
     currentPage: state.currentPage,
     sortBy: state.sortBy,
     
-    // Resultados
+    // Results
     filteredProperties,
     paginatedProperties,
     totalPages,
     totalResults: filteredProperties.length,
     
-    // Acciones
+    // Actions
     setSearchQuery,
     setFilters,
     setCurrentPage,
     setSortBy,
     clearAllFilters,
     
-    // Datos estáticos
+    // Static data
     availableCities,
     availableTypes,
     priceRange,
     
-    // Estados
+    // States
     hasActiveFilters,
     loading
   };

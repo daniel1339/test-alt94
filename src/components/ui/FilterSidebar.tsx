@@ -82,7 +82,7 @@ export function FilterSidebar({
 
   return (
     <>
-      {/* Overlay para móvil */}
+      {/* Mobile overlay */}
       {isOpen && (
         <div 
           className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
@@ -135,7 +135,7 @@ export function FilterSidebar({
             </div>
           </div>
 
-          {/* Filtro por Ciudad */}
+          {/* City filter */}
           <div className="mb-6">
             <button
               onClick={() => toggleSection('ciudad')}
@@ -193,7 +193,7 @@ export function FilterSidebar({
             </div>
           </div>
 
-          {/* Filtro por Tipo */}
+          {/* Property type filter */}
           <div className="mb-6">
             <button
               onClick={() => toggleSection('tipo')}
@@ -251,7 +251,7 @@ export function FilterSidebar({
             </div>
           </div>
 
-          {/* Filtro por Precio */}
+          {/* Price filter */}
           <div className="mb-6">
             <button
               onClick={() => toggleSection('precio')}
@@ -323,7 +323,7 @@ export function FilterSidebar({
             </div>
           </div>
 
-          {/* Resumen de filtros activos */}
+          {/* Active filters summary */}
           {hasActiveFilters && (
             <div 
               className="p-3 rounded-lg border-l-4"

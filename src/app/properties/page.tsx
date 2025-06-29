@@ -12,7 +12,7 @@ export default async function PropertiesPage() {
     <MainLayout>
       <div className="space-y-8">
         
-        {/* Header de la página */}
+        {/* Page Header */}
         <div className="text-center space-y-4">
             <h1 className="text-3xl font-bold text-primary">
               Propiedades Disponibles
@@ -22,7 +22,7 @@ export default async function PropertiesPage() {
           </p>
         </div>
 
-        {/* Estadísticas rápidas */}
+        {/* Quick Stats */}
         <div className="grid-stats">
           <div className="stat-card bg-primary-50">
             <div className="text-2xl font-bold flex items-center justify-center space-x-2 text-primary-600">
@@ -65,7 +65,7 @@ export default async function PropertiesPage() {
           </div>
         </div>
 
-        {/* Lista de propiedades con filtros */}
+        {/* Properties List with Filters */}
         <PropertyListWithFilters 
           initialProperties={properties} 
           showRecommendations={true}

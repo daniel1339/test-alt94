@@ -3,8 +3,8 @@ import { getPropertyService } from '@/services/property/singleton';
 import { findSimilarProperties } from '@/utils/similarity';
 
 /**
- * SSR function para cargar una propiedad por ID
- * Ejecuta solo en el servidor
+ * SSR function to load a property by ID
+ * Runs only on server
  */
 export async function getPropertySSR(id: string): Promise<Property | null> {
   try {
@@ -24,8 +24,8 @@ export async function getPropertySSR(id: string): Promise<Property | null> {
 }
 
 /**
- * SSR function para cargar recomendaciones de una propiedad
- * Ejecuta solo en el servidor
+ * SSR function to load property recommendations
+ * Runs only on server
  */
 export async function getRecommendationsSSR(propertyId: string): Promise<PropertyWithScore[]> {
   try {

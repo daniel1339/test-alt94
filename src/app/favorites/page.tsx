@@ -5,7 +5,7 @@ export default function FavoritesPage() {
   return (
     <MainLayout>
       <div className="space-y-8">
-        {/* Header de la página */}
+        {/* Page Header */}
         <div className="text-center space-y-4">
           <h1 
             className="text-3xl font-bold"
@@ -25,7 +25,7 @@ export default function FavoritesPage() {
           </p>
         </div>
 
-        {/* Lista de favoritos */}
+        {/* Favorites List */}
         <FavoritesList />
       </div>
     </MainLayout>

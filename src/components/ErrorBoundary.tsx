@@ -37,16 +37,16 @@ export class ErrorBoundary extends Component<Props, State> {
               style={{ color: 'var(--color-error-500)' }}
             />
             <h2 className="text-xl font-bold text-gray-900 mb-2">
-              Algo salió mal
+              Something went wrong
             </h2>
             <p className="text-gray-600 mb-6">
-              Ha ocurrido un error inesperado. Por favor, recarga la página.
+              An unexpected error occurred. Please reload the page.
             </p>
             
             {process.env.NODE_ENV === 'development' && this.state.error && (
               <details className="mb-4 text-left">
                 <summary className="cursor-pointer text-sm text-gray-500 hover:text-gray-700">
-                  Detalles técnicos
+                  Technical details
                 </summary>
                 <pre className="mt-2 text-xs text-red-600 bg-red-50 p-2 rounded overflow-auto">
                   {this.state.error.toString()}
@@ -58,7 +58,7 @@ export class ErrorBoundary extends Component<Props, State> {
               onClick={() => window.location.reload()}
               variant="primary"
             >
-              Recargar página
+              Reload page
             </Button>
           </div>
         </div>

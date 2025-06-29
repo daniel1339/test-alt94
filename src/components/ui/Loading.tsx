@@ -57,13 +57,13 @@ export function LoadingCard({ rows = 3 }: { rows?: number }) {
       className="bg-surface border border-default rounded-lg p-4 shadow-md animate-pulse"
       style={{ animationDuration: '1.5s' }}
     >
-      {/* Imagen placeholder */}
+      {/* Image placeholder */}
       <div 
         className="h-48 bg-gray-200 rounded-lg mb-4"
         style={{ backgroundColor: 'var(--color-gray-200)' }}
       ></div>
       
-      {/* Líneas de texto placeholder */}
+      {/* Text lines placeholder */}
       <div className="space-y-3">
         {Array.from({ length: rows }).map((_, index) => (
           <div
@@ -120,17 +120,16 @@ export function TextSkeleton({
   lines?: number; 
   className?: string; 
 }) {
+  const lineWidths = ['w-1/2', 'w-3/4', 'w-1/4'];
+
   return (
     <div className={clsx('space-y-2', className)}>
+      {/* Placeholder text lines */}
       {Array.from({ length: lines }).map((_, index) => (
-        <div
+        <div 
           key={index}
-          className="h-4 bg-gray-200 rounded animate-pulse"
-          style={{
-            backgroundColor: 'var(--color-gray-200)',
-            width: index === lines - 1 ? '60%' : '100%'
-          }}
-        ></div>
+          className={`skeleton skeleton-text ${lineWidths[index % lineWidths.length]}`}
+        />
       ))}
     </div>
   );

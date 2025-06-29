@@ -14,10 +14,10 @@ export default function RecommendationsLoading() {
         {/* Loading content */}
         <div className="space-y-6 animate-pulse">
           
-          {/* Botón de regreso skeleton */}
+          {/* Back button skeleton */}
           <div className="skeleton skeleton-text w-32"></div>
 
-          {/* Header de propiedad original skeleton */}
+          {/* Original property header skeleton */}
           <Card padding="lg" shadow="md" className="bg-primary-50 border border-primary-200">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
               <div className="flex items-start space-x-4">
@@ -35,7 +35,7 @@ export default function RecommendationsLoading() {
             </div>
           </Card>
 
-          {/* Descripción del algoritmo skeleton */}
+          {/* Algorithm description skeleton */}
           <Card padding="md" className="bg-info-50 border border-info-200">
             <div className="flex items-start space-x-3">
               <div className="w-5 h-5 bg-info-300 rounded mt-0.5 flex-shrink-0"></div>
@@ -46,7 +46,7 @@ export default function RecommendationsLoading() {
             </div>
           </Card>
 
-          {/* Header de recomendaciones skeleton */}
+          {/* Recommendations header skeleton */}
           <div className="space-y-2">
             <div className="flex items-center space-x-2">
               <div className="w-5 h-5 bg-primary-300 rounded"></div>
@@ -55,7 +55,7 @@ export default function RecommendationsLoading() {
             <div className="skeleton skeleton-text w-64"></div>
           </div>
 
-          {/* Grid de recomendaciones skeleton */}
+          {/* Recommendations grid skeleton */}
           <div className="grid-properties">
             {Array.from({ length: 6 }).map((_, index) => (
               <Card key={index} padding="none" shadow="md" className="overflow-hidden">

@@ -1,19 +1,19 @@
-// Hook de utilidad para acciones de favoritos
-// No usa 'use client' para permitir importación desde componentes server
+// Utility hook for favorites actions
+// Doesn't use 'use client' to allow import from server components
 
 export interface FavoritesActions {
-  // IDs de propiedades favoritas para usar en SSR si fuera necesario
+  // Favorite property IDs for use in SSR if needed
   getFavoriteIds: () => number[];
   
-  // Información básica para mostrar en componentes server
+  // Basic information to display in server components
   getFavoritesCount: () => number;
   
-  // Helpers para componentes que no pueden usar el contexto directamente
+  // Helpers for components that can't use context directly
   isPropertyFavorite: (propertyId: number) => boolean;
 }
 
-// Este es un hook placeholder que podría expandirse en el futuro
-// para funcionalidades como obtener favoritos desde el servidor
+// This is a placeholder hook that could be expanded in the future
+// for functionalities like getting favorites from the server
 export function useFavoritesActions(): FavoritesActions {
   
   const getFavoriteIds = (): number[] => {

@@ -40,13 +40,13 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Focus styles consistentes para accesibilidad */
+/* Consistent focus styles for accessibility */
 *:focus {
   outline: 2px solid var(--color-primary-500);
   outline-offset: 2px;
 }
 
-/* Custom scrollbar para webkit browsers */
+/* Custom scrollbar for webkit browsers */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -64,13 +64,13 @@ html {
   background: var(--color-gray-500);
 }
 
-/* Selección de texto */
+/* Text selection */
 ::selection {
   background-color: var(--color-primary-100);
   color: var(--color-primary-900);
 }
 
-/* Animaciones suaves por defecto */
+/* Smooth animations by default */
 * {
   transition: color var(--transition-fast), 
               background-color var(--transition-fast),

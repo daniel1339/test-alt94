@@ -13,7 +13,7 @@ interface PageProps {
   params: Promise<{ id: string }>;
 }
 
-// Metadata dinámica para SEO
+// Dynamic metadata for SEO
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
   const property = await getPropertySSR(id);
@@ -46,18 +46,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function RecommendationsPage({ params }: PageProps) {
   const { id } = await params;
   
-  // Cargar propiedad original y recomendaciones en paralelo
+  // Load original property and recommendations in parallel
   const [property, recommendations] = await Promise.all([
     getPropertySSR(id),
     getRecommendationsSSR(id)
   ]);
 
-  // Si no se encuentra la propiedad original, mostrar 404
+  // If original property not found, show 404
   if (!property) {
     notFound();
   }
 
-  // Items del breadcrumb usando utilidad centralizada
+  // Breadcrumb items using centralized utility
   const breadcrumbItems = createRecommendationsBreadcrumb(property.titulo);
 
   return (
@@ -66,9 +66,9 @@ export default async function RecommendationsPage({ params }: PageProps) {
         {/* Breadcrumb navigation */}
         <Breadcrumb items={breadcrumbItems} />
         
-        {/* Header de la página */}
+        {/* Page Header */}
         <div className="space-y-6">
-          {/* Botón de regreso */}
+          {/* Back button */}
           <Link 
             href={`/properties/${property.id}`}
             className="inline-flex items-center text-sm text-secondary hover:text-primary transition-colors"
@@ -77,7 +77,7 @@ export default async function RecommendationsPage({ params }: PageProps) {
             Volver a la propiedad
           </Link>
 
-          {/* Información de la propiedad original */}
+          {/* Original property information */}
           <Card padding="lg" shadow="md" className="bg-primary-50 border border-primary-200">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
               <div className="flex items-start space-x-4">
@@ -106,7 +106,7 @@ export default async function RecommendationsPage({ params }: PageProps) {
             </div>
           </Card>
 
-          {/* Descripción del algoritmo */}
+          {/* Algorithm description */}
           <Card padding="md" className="bg-info-50 border border-info-200">
             <div className="flex items-start space-x-3">
               <HiSparkles className="w-5 h-5 text-info-600 mt-0.5 flex-shrink-0" />
@@ -124,7 +124,7 @@ export default async function RecommendationsPage({ params }: PageProps) {
           </Card>
         </div>
 
-        {/* Lista de recomendaciones */}
+        {/* Recommendations list */}
         <RecommendationsList 
           propertyId={id}
           initialRecommendations={recommendations}

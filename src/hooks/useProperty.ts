@@ -17,7 +17,7 @@ interface ApiResponse {
 }
 
 /**
- * Hook personalizado para cargar una propiedad por ID
+ * Custom hook to load a property by ID
  */
 export function useProperty(id: string): UsePropertyResult {
   const [property, setProperty] = useState<Property | null>(null);
@@ -60,6 +60,7 @@ export function useProperty(id: string): UsePropertyResult {
     if (id) {
       fetchProperty();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return {
@@ -70,4 +71,4 @@ export function useProperty(id: string): UsePropertyResult {
   };
 }
 
-// Funciones SSR movidas a src/lib/ssr/property.ts 
+// SSR functions moved to src/lib/ssr/property.ts 

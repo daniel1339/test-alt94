@@ -14,7 +14,7 @@ export function PropertyGrid({
   className = '',
   columns
 }: PropertyGridProps) {
-  // Determinar clase de grid basada en columnas
+  // Determine grid class based on columns
   const getGridClass = () => {
     if (columns) {
       const columnClasses = {

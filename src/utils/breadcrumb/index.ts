@@ -1,5 +1,5 @@
 /**
- * Utilidades para construcción de breadcrumbs
+ * Utilities for breadcrumb construction
  */
 
 export interface BreadcrumbItem {
@@ -9,14 +9,14 @@ export interface BreadcrumbItem {
 }
 
 /**
- * Breadcrumb base para todas las páginas
+ * Base breadcrumb for all pages
  */
 export const baseBreadcrumb: BreadcrumbItem[] = [
   { label: 'Inicio', href: '/' }
 ];
 
 /**
- * Breadcrumb para páginas de propiedades
+ * Breadcrumb for properties pages
  */
 export const propertiesBreadcrumb: BreadcrumbItem[] = [
   ...baseBreadcrumb,
@@ -24,7 +24,7 @@ export const propertiesBreadcrumb: BreadcrumbItem[] = [
 ];
 
 /**
- * Crea breadcrumb para detalle de propiedad
+ * Creates breadcrumb for property detail
  */
 export const createPropertyDetailBreadcrumb = (title: string): BreadcrumbItem[] => [
   ...propertiesBreadcrumb,
@@ -32,7 +32,7 @@ export const createPropertyDetailBreadcrumb = (title: string): BreadcrumbItem[] 
 ];
 
 /**
- * Crea breadcrumb para recomendaciones
+ * Creates breadcrumb for recommendations
  */
 export const createRecommendationsBreadcrumb = (title: string): BreadcrumbItem[] => [
   ...propertiesBreadcrumb,
@@ -41,7 +41,7 @@ export const createRecommendationsBreadcrumb = (title: string): BreadcrumbItem[]
 ];
 
 /**
- * Crea breadcrumb para favoritos
+ * Creates breadcrumb for favorites
  */
 export const createFavoritesBreadcrumb = (): BreadcrumbItem[] => [
   ...baseBreadcrumb,
@@ -49,7 +49,7 @@ export const createFavoritesBreadcrumb = (): BreadcrumbItem[] => [
 ];
 
 /**
- * Crea breadcrumb para not found
+ * Creates breadcrumb for not found
  */
 export const createNotFoundBreadcrumb = (section: string): BreadcrumbItem[] => [
   ...baseBreadcrumb,
@@ -58,7 +58,7 @@ export const createNotFoundBreadcrumb = (section: string): BreadcrumbItem[] => [
 ];
 
 /**
- * Crea breadcrumb para loading states
+ * Creates breadcrumb for loading states
  */
 export const createLoadingBreadcrumb = (section: string): BreadcrumbItem[] => [
   ...baseBreadcrumb,

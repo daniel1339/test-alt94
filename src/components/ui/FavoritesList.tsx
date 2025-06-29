@@ -71,8 +71,8 @@ export function FavoritesList({ className = '' }: FavoritesListProps) {
 
   return (
     <div className={className}>
-      {/* Header con contador y acción de limpiar */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+      {/* Header with counter and clear action */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <div className="space-y-1">
           <h2 
             className="text-2xl font-bold"
@@ -101,7 +101,7 @@ export function FavoritesList({ className = '' }: FavoritesListProps) {
         )}
       </div>
 
-      {/* Grid de propiedades favoritas */}
+      {/* Favorite properties grid */}
       <div className="grid-properties">
         {favorites.map(property => (
           <PropertyCard
@@ -112,7 +112,7 @@ export function FavoritesList({ className = '' }: FavoritesListProps) {
         ))}
       </div>
 
-      {/* Footer con info adicional */}
+      {/* Footer with additional info */}
       <Card padding="md" className="mt-8 bg-info-50 border-info-200">
         <div className="flex items-start space-x-3">
           <HiHeart className="w-5 h-5 text-info-600 mt-0.5 flex-shrink-0" />
